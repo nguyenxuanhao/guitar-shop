@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+    <!-- Base Define -->
+    <definition name="base.definition"
+                template="/pages/shared/_layout.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/pages/shared/_header.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/pages/shared/_footer.jsp" />
+    </definition>
+
+    <!-- Home Page -->
+    <definition name="homepage" extends="base.definition">
+        <put-attribute name="title" value="Trang chủ" />
+        <put-attribute name="body" value="/pages/home/index.jsp" />
+    </definition>
+
+    <!-- Cart Detail Page -->
+    <definition name="cart-detail" extends="base.definition">
+        <put-attribute name="title" value="Chi tiết giỏ hàng" />
+        <put-attribute name="body" value="/pages/cart/cart-detail.jsp" />
+    </definition>
+
+
+
+</tiles-definitions>
