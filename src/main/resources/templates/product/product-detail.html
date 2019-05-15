@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="no-js"
+      th:replace="~{/shared/_layout :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #main-content}
+                                               )}"
+      xmlns:th="http://www.thymeleaf.org"> 
+<head>
+        <title>Chi tiết sản phẩm - Guitar Shop</title>
+
+</head>
+<body>
+<div id="main-content">
+
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>Chi tiết sản phẩm</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+    <!--================Single Product Area =================-->
+    <div class="product_image_area">
+        <div class="container">
+            <div class="row s_product_inner">
+                <div class="col-md-6 col-lg-4">
+                    <div class="s_Product_carousel">
+                        <div class="single-prd-item">
+                            <img alt="" class="img-fluid" th:src="@{/img/fav.png}">
+                        </div>
+                        <div class="single-prd-item">
+                            <img alt="" class="img-fluid" th:src="@{/img/fav.png}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 offset-lg-1">
+                    <div class="s_product_text">
+                        <h3>Guitar 123</h3>
+                        <h2>2.700.000đ</h2>
+                        <h4 class="l-through">3.000.000đ</h4>
+                        <ul class="list">
+                            <li><a href="#"><span>Loại đàn: </span> Classic</a></li>
+                            <li><a href="#"><span>Mã SP: </span> 123123</a></li>
+                            <li><a href="#"><span>Tình trạng: </span> Còn hàng</a></li>
+                            <li><a href="#"><span>Bảo hành: </span> 1 năm</a></li>
+                        </ul>
+                        <div class="social-button-group">
+                            <ul class="list">
+                                <li><a id="fb-share-btn"><span class="fa fa-facebook-f"></span></a></li>
+                                <li><a class="share-popup"
+                                       href="http://www.twitter.com/intent/tweet?url=URL&via=Handle&text=Title"
+                                       id="tw-share-btn"><span class="fa fa-twitter"></span></a></li>
+                                <li><a class="share-popup"
+                                       href="https://www.tumblr.com/widgets/share/tool/preview?shareSource=legacy&canonicalUrl=&url=Domain&posttype=link&content=ProductURL&feature=share&caption=Title"
+                                       id="tb-share-btn"><span class="fa fa-tumblr"></span></a></li>
+                                <li><a class="share-popup"
+                                       href="http://pinterest.com/pin/create/button/?url=URL&media=Image_URL&description=Description"
+                                       id="pi-share-btn"><span class="fa fa-pinterest"></span></a></li>
+                            </ul>
+                        </div>
+                        <p>Lorem is dfdfdf kdjfdjfdkfj dkfjdkfjdkj</p>
+                        <div class="product_count">
+                            <label for="qty">Số lượng:</label>
+                            <input class="input-text" id="qty" maxlength="12" name="qty" type="text" value="1">
+                            <button class="increase"
+                                    onclick="var result = document.getElementById('qty'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                    type="button">
+                                <i class="lnr lnr-chevron-up"></i>
+                            </button>
+                            <button class="reduced"
+                                    onclick="var result = document.getElementById('qty'); var sst = result.value; if( !isNaN( sst ) && sst > 1 ) result.value--;return false;"
+                                    type="button">
+                                <i class="lnr lnr-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div class="card_area d-flex align-items-center">
+                            <a class="primary-btn" href="#" id="add_to_cart">Thêm vào giỏ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--================End Single Product Area =================-->
+    <!--================Product Description Area =================-->
+    <section class="product_description_area">
+        <div class="container">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a aria-controls="review" aria-selected="false" class="nav-link active" data-toggle="tab"
+                       href="#review"
+                       id="review-tab"
+                       role="tab">Đánh giá</a>
+                </li>
+                <li class="nav-item">
+                    <a aria-controls="profile" aria-selected="false" class="nav-link" data-toggle="tab" href="#profile"
+                       id="profile-tab"
+                       role="tab">Đặc điểm kỹ thuật</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div aria-labelledby="review-tab" class="tab-pane fade show active" id="review" role="tabpanel">
+                    <div class="row total_rate">
+                        <div class="col-lg-4">
+                            <div class="box_total">
+                                <h5>Xếp hạng trung bình</h5>
+                                <h4><span id="average-rate">4,7</span>/5</h4>
+                                <h6>(<span id="total-rate-1">3</span> lượt xếp hạng)</h6>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="rating_list">
+                                <h5>Dựa trên <span id="total-rate-2">3</span> lượt xếp hạng:</h5>
+                                <ul class="list">
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        &ensp; <span id="count-rate-@(listCountRate.Length - i)">1</span> lượt
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="review_box">
+                                <h5>Xếp hạng của bạn:</h5>
+                                <div class="rate list"></div>
+                                <div>
+                                    <span id="point">4</span>
+                                    <span>/5</span>
+                                </div>
+                                <a class="primary-btn mt-2" href="#" id="send_rating">Gửi</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fb-comments" data-href="http://localhost:8080/chi-tiet" data-numposts="5"
+                         data-order-by="reverse_time" data-width="auto"></div>
+                </div>
+                <div aria-labelledby="profile-tab" class="tab-pane fade" id="profile" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <h5>Mã sản phẩm</h5>
+                                </td>
+                                <td>
+                                    <h5>123123</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Kiểu dáng</h5>
+                                </td>
+                                <td>
+                                    <h5>Dáng D</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Xuất xứ</h5>
+                                </td>
+                                <td>
+                                    <h5>Nhật Bản</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Thương hiệu</h5>
+                                </td>
+                                <td>
+                                    <h5>STATION</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Chất liệu thân đàn</h5>
+                                </td>
+                                <td>
+                                    <h5>Gỗ thông</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Chất liệu dây đàn</h5>
+                                </td>
+                                <td>
+                                    <h5>Kim loại</h5>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Product Description Area =================-->
+    <!-- Start related-product Area -->
+    <section class="related-product-area section_gap_bottom">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div class="section-title">
+                        <h1>Sản phẩm liên quan</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <a href="/chi-tiet">
+                    <div class="col-lg-3 col-md-4 col-6">
+                        <div class="single-product">
+                            <img alt="" class="img-fluid" th:src="@{/img/fav.png}">
+                            <div class="product-details s_product_text">
+                                <h6>
+                                    Guitar 234
+                                </h6>
+                                <div class="price">
+                                    <h6>3.000.000đ</h6>
+                                    <h6 class="l-through">3.500.000đ</h6>
+                                </div>
+                                <div class="prd-bottom card_area">
+                                    <a class="primary-btn" href="#">Thêm vào giỏ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- End related-product Area -->  
+</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html class="no-js"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/shared/_layout :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #main-content}
+                                               )}"> 
+<head>
+        <title>Đăng kí - Guitar Shop</title>
+</head>
+<body>
+<div id="main-content">
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>Đăng kí tài khoản</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+    <!--================Login Box Area =================-->
+    <section class="login_box_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="login_box_img">
+                        <img class="img-fluid" th:src="@{/img/singup.jpg}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="login_form_inner">
+                        <h3>Đăng kí</h3>
+                        <div class="row login_form">
+                            <div class="col-md-12 form-group">
+                                <input class="form-control" placeholder="Email" type="email">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input class="form-control" placeholder="Mật khẩu" type="password">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input class="form-control" placeholder="Họ tên" type="text">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input class="form-control" placeholder="Số điện thoại" type="text">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input class="form-control" placeholder="Địa chỉ" type="text">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <button type="submit" class="primary-btn" id="btnRegister">Đăng kí</button>
+                                <div class="redirect_login">
+                                    Đã có tài khoản?
+                                    <a href="/dang-nhap">Đăng nhập</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <dialog class="success_dialog">
+                    <button type="button" class="close closeDialog" data-dismiss="modal" title="Đóng">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="dialog_wrapper">
+                        <p>
+                        <h4>Đăng kí thành công!</h4>
+                        </p>
+                        <p>Cảm ơn bạn đã trở thành thành viên của Guitar Shop!</p>
+                        <div class="dialog_navigation">
+                            <a href="/dang-nhap" class="primary-btn">Đăng nhập</a>
+                            <a href="/" class="return_home">Về trang chủ</a>
+                        </div>
+                    </div>
+                </dialog>
+            </div>
+        </div>
+    </section>    
+</div>
+</body>
+</html>
