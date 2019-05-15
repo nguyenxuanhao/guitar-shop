@@ -5106,7 +5106,7 @@ label {
         color: #777777;
     }
 
-/* Feature Product Area css
+/* Feature ProductInfo Area css
 ============================================================================================ */
 .feature_product_area .main_box {
     box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.05);
@@ -5260,9 +5260,9 @@ label {
     margin-bottom: -35px;
 }
 
-/* End Feature Product Area css
+/* End Feature ProductInfo Area css
 ============================================================================================ */
-/* End Feature Product Area css
+/* End Feature ProductInfo Area css
 ============================================================================================ */
 .most_product_area .main_box {
     box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.05);
@@ -5305,9 +5305,9 @@ label {
             margin-bottom: 0px;
         }
 
-/* End Feature Product Area css
+/* End Feature ProductInfo Area css
 ============================================================================================ */
-/* Product Sidebar Area css
+/* ProductInfo Sidebar Area css
 ============================================================================================ */
 .cat_product_area .latest_product_inner {
     padding-top: 30px;
@@ -5621,9 +5621,9 @@ label {
     padding-bottom: 120px;
 }
 
-/* End Product Sidebar Area css
+/* End ProductInfo Sidebar Area css
 ============================================================================================ */
-/* Single Product Area css
+/* Single ProductInfo Area css
 ============================================================================================ */
 .product_image_area {
     padding-top: 120px;
@@ -6087,7 +6087,7 @@ label {
         color: #ffba00;
     }
 
-/* End Single Product Area css
+/* End Single ProductInfo Area css
 ============================================================================================ */
 /* Cart Area css
 ============================================================================================ */
