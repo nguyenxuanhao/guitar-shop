@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html class="no-js"
+      xmlns:th="http://www.thymeleaf.org"
       th:replace="~{/shared/_layout :: main-fragment(
                                                 ~{::title},
                                                 ~{:: #main-content}
-                                               )}"
-      xmlns:th="http://www.thymeleaf.org"> 
+                                               )}"> 
 <head>
         <title>Chi tiết sản phẩm - Guitar Shop</title>
-
 </head>
 <body>
 <div id="main-content">
-
     <!-- Start Banner Area -->
     <section class="banner-area organic-breadcrumb">
         <div class="container">
@@ -50,16 +48,10 @@
                         </ul>
                         <div class="social-button-group">
                             <ul class="list">
-                                <li><a id="fb-share-btn"><span class="fa fa-facebook-f"></span></a></li>
-                                <li><a class="share-popup"
-                                       href="http://www.twitter.com/intent/tweet?url=URL&via=Handle&text=Title"
-                                       id="tw-share-btn"><span class="fa fa-twitter"></span></a></li>
-                                <li><a class="share-popup"
-                                       href="https://www.tumblr.com/widgets/share/tool/preview?shareSource=legacy&canonicalUrl=&url=Domain&posttype=link&content=ProductURL&feature=share&caption=Title"
-                                       id="tb-share-btn"><span class="fa fa-tumblr"></span></a></li>
-                                <li><a class="share-popup"
-                                       href="http://pinterest.com/pin/create/button/?url=URL&media=Image_URL&description=Description"
-                                       id="pi-share-btn"><span class="fa fa-pinterest"></span></a></li>
+                                <li><a><span class="fa fa-facebook-f"></span></a></li>
+                                <li><a><span class="fa fa-twitter"></span></a></li>
+                                <li><a><span class="fa fa-tumblr"></span></a></li>
+                                <li><a><span class="fa fa-pinterest"></span></a></li>
                             </ul>
                         </div>
                         <p>Lorem is dfdfdf kdjfdjfdkfj dkfjdkfjdkj</p>
