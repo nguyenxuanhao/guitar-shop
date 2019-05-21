@@ -1,63 +1,68 @@
 package org.group02.guitarshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name="Product")
-public class Product {
+@Table(name="PRODUCT")
+@EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
+public class Product implements Serializable {
 
     @Id
-    @GeneratedValue
-    @Column(name="id", nullable=false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="Id")
     private long id;
 
-    @Column(name="name", nullable=false)
+    @Column(name="Name")
     private String name;
 
-    @Column(name="price", nullable=false)
+    @Column(name="Price")
     private String price;
 
-    @Column(name="discountAmount", nullable=false)
+    @Column(name="Discount_Amount")
     private long discountAmount;
 
-    @Column(name="averageRate", nullable=false)
+    @Column(name="Average_Rate")
     private double averageRate;
 
-    @Column(name="imageThumbnail", nullable=false)
+    @Column(name="Image_Thumbnail")
     private String imageThumbnail;
 
-    @Column(name="status", nullable=false)
+    @Column(name="Status")
     private String status;
 
-    @Column(name="modelNumber", nullable=false)
+    @Column(name="Model_Number")
     private String modelNumber;
 
-    @Column(name="description", nullable=false)
+    @Column(name="Description")
     private String description;
 
-    @Column(name="style", nullable=false)
+    @Column(name="Style")
     private String style;
 
-    @Column(name="material", nullable=false)
+    @Column(name="Material")
     private String material;
 
-    @Column(name="warrantyPeriod", nullable=false)
+    @Column(name="Warranty_Period")
     private String warrantyPeriod;
 
-    @Column(name="stringMaterial", nullable=false)
+    @Column(name="String_Material")
     private String stringMaterial;
 
-    @Column(name="createdTime", nullable=false)
+    @Column(name="Created_Time")
     private java.sql.Timestamp createdTime;
 
-    @Column(name="idCategory", nullable=false)
+    @Column(name="Id_Category")
     private long idCategory;
 
-    @Column(name="idManufacturer", nullable=false)
+    @Column(name="Id_Manufacturer")
     private long idManufacturer;
 
-    @Column(name="zzz", nullable=false)
+    @Column(name="Metadata")
     private String metadata;
 
     public long getId() {

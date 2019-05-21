@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html class="no-js">
 <head>
     <title>Product</title>
 
@@ -12,8 +12,6 @@
 </head>
 
 <body>
-<!-- Include _menu.html -->
-<th:block th:include="/_menu"></th:block>
 
 <h2>Accounts</h2>
 
@@ -24,9 +22,9 @@
         <th>Balance</th>
     </tr>
     <tr th:each="p : ${productList}">
-        <td th:utext="${productList.id}">..</td>
-        <td th:utext="${productList.name}">..</td>
-        <td th:utext="${productList.price}">..</td>
+        <td th:utext="${p.id}">..</td>
+        <td th:utext="${p.name}">..</td>
+        <td th:utext="${p.price}">..</td>
     </tr>
 
 </table>

@@ -1,7 +1,7 @@
 package org.group02.guitarshop.model;
 
 
-public class ProductInfo {
+public class Product {
 
   private long id;
   private String name;

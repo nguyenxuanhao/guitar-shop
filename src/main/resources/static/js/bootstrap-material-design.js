@@ -6335,16 +6335,16 @@ var BootstrapMaterialDesign = function ($$$1) {
 
   var JQUERY_NO_CONFLICT = $$$1.fn[JQUERY_NAME];
   /**
-   * Global configuration:
-   *  The global configuration hash will be mixed in to each components' config.
+   * Global config:
+   *  The global config hash will be mixed in to each components' config.
    *    e.g. calling $.bootstrapMaterialDesign({global: { validate: true } }) would pass `validate:true` to every component
    *
    *
-   * Component configuration:
+   * Component config:
    *  - selector: may be a string or an array.  Any array will be joined with a comma to generate the selector
    *  - disable any component by defining it as false with an override. e.g. $.bootstrapMaterialDesign({ autofill: false })
    *
-   *  @see each individual component for more configuration settings.
+   *  @see each individual component for more config settings.
    */
 
   var Default = {
