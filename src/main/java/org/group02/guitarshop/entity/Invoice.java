@@ -1,17 +1,45 @@
-package org.group02.guitarshop.model;
+package org.group02.guitarshop.entity;
 
-public class Invoice {
+import javax.persistence.*;
+import java.io.Serializable;
 
+@Entity
+@Table(name="INVOICE")
+public class Invoice implements Serializable {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name="Id")
   private long id;
+
+  @Column(name="Customer_Name")
   private String customerName;
+
+  @Column(name="Customer_Email")
   private String customerEmail;
+
+  @Column(name="Customer_Phone")
   private String customerPhone;
+
+  @Column(name="Customer_Address")
   private String customerAddress;
+
+  @Column(name="Customer_Message")
   private String customerMessage;
+
+  @Column(name="Total")
   private String total;
+
+  @Column(name="Payment_Method")
   private String paymentMethod;
+
+  @Column(name="Created_Time")
   private java.sql.Timestamp createdTime;
+
+  @Column(name="Id_User")
   private long idUser;
+
+  @Column(name="Id_Discount_Code")
   private long idDiscountCode;
 
 

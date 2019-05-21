@@ -16,7 +16,6 @@ import javax.annotation.Resource;
 
 @Controller
 public class ProductController {
-    // Constructor based Dependency Injection
 
     @Resource(name = "productService")
     private ProductService productService;
@@ -38,64 +37,65 @@ public class ProductController {
         return "product";
     }
 
-    @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
-    public ModelAndView displayNewProductForm() {
-        ModelAndView mv = new ModelAndView("addProduct");
-        mv.addObject("headerMessage", "Add Product Details");
-        mv.addObject("product", new Product());
-        return mv;
-    }
 
-    @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
-    public ModelAndView saveNewProduct(@ModelAttribute Product product, BindingResult result) {
-        ModelAndView mv = new ModelAndView("redirect:/home");
-
-        if (result.hasErrors()) {
-            return new ModelAndView("error");
-        }
-        boolean isAdded = productService.addProduct(product);
-        if (isAdded) {
-            mv.addObject("message", "New product successfully added");
-        } else {
-            return new ModelAndView("error");
-        }
-
-        return mv;
-    }
-
-    @RequestMapping(value = "/editProduct/{id}", method = RequestMethod.GET)
-    public ModelAndView displayEditProductForm(@PathVariable Long id) {
-        ModelAndView mv = new ModelAndView("/editProduct");
-        Product product = productService.getProductById(id);
-        mv.addObject("headerMessage", "Edit Product Details");
-        mv.addObject("product", product);
-        return mv;
-    }
-
-    @RequestMapping(value = "/editProduct/{id}", method = RequestMethod.POST)
-    public ModelAndView saveEditedProduct(@ModelAttribute Product product, BindingResult result) {
-        ModelAndView mv = new ModelAndView("redirect:/home");
-
-        if (result.hasErrors()) {
-            System.out.println(result.toString());
-            return new ModelAndView("error");
-        }
-        boolean isSaved = productService.addProduct(product);
-        if (!isSaved) {
-
-            return new ModelAndView("error");
-        }
-
-        return mv;
-    }
-
-    @RequestMapping(value = "/deleteProduct/{id}", method = RequestMethod.GET)
-    public ModelAndView deleteProductById(@PathVariable Long id) {
-        boolean isDeleted = productService.removeProduct(id);
-        System.out.println("Product deletion respone: " + isDeleted);
-        ModelAndView mv = new ModelAndView("redirect:/home");
-        return mv;
-
-    }
+//    @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
+//    public ModelAndView displayNewProductForm() {
+//        ModelAndView mv = new ModelAndView("addProduct");
+//        mv.addObject("headerMessage", "Add Product Details");
+//        mv.addObject("product", new Product());
+//        return mv;
+//    }
+//
+//    @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
+//    public ModelAndView saveNewProduct(@ModelAttribute Product product, BindingResult result) {
+//        ModelAndView mv = new ModelAndView("redirect:/home");
+//
+//        if (result.hasErrors()) {
+//            return new ModelAndView("error");
+//        }
+//        boolean isAdded = productService.addProduct(product);
+//        if (isAdded) {
+//            mv.addObject("message", "New product successfully added");
+//        } else {
+//            return new ModelAndView("error");
+//        }
+//
+//        return mv;
+//    }
+//
+//    @RequestMapping(value = "/editProduct/{id}", method = RequestMethod.GET)
+//    public ModelAndView displayEditProductForm(@PathVariable Long id) {
+//        ModelAndView mv = new ModelAndView("/editProduct");
+//        Product product = productService.getProductById(id);
+//        mv.addObject("headerMessage", "Edit Product Details");
+//        mv.addObject("product", product);
+//        return mv;
+//    }
+//
+//    @RequestMapping(value = "/editProduct/{id}", method = RequestMethod.POST)
+//    public ModelAndView saveEditedProduct(@ModelAttribute Product product, BindingResult result) {
+//        ModelAndView mv = new ModelAndView("redirect:/home");
+//
+//        if (result.hasErrors()) {
+//            System.out.println(result.toString());
+//            return new ModelAndView("error");
+//        }
+//        boolean isSaved = productService.addProduct(product);
+//        if (!isSaved) {
+//
+//            return new ModelAndView("error");
+//        }
+//
+//        return mv;
+//    }
+//
+//    @RequestMapping(value = "/deleteProduct/{id}", method = RequestMethod.GET)
+//    public ModelAndView deleteProductById(@PathVariable Long id) {
+//        boolean isDeleted = productService.removeProduct(id);
+//        System.out.println("Product deletion respone: " + isDeleted);
+//        ModelAndView mv = new ModelAndView("redirect:/home");
+//        return mv;
+//
+//    }
 
 }

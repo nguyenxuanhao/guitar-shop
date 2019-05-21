@@ -1,9 +1,21 @@
-package org.group02.guitarshop.model;
+package org.group02.guitarshop.entity;
 
-public class InvoiceDetail {
+import javax.persistence.*;
+import java.io.Serializable;
 
+@Entity
+@Table(name="INVOICE_DETAIL")
+public class InvoiceDetail implements Serializable {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name="Id_Invoice")
   private long idInvoice;
+
+  @Column(name="Id_Product")
   private long idProduct;
+
+  @Column(name="Quantity")
   private long quantity;
 
 

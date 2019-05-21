@@ -17,9 +17,7 @@ public class ProductServiceImpl implements ProductService {
     // Implementing Constructor based DI
     private ProductRepository repository;
 
-    public ProductServiceImpl() {
-
-    }
+    public ProductServiceImpl() { }
 
     @Autowired
     public ProductServiceImpl(ProductRepository repository) {
@@ -45,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
         try {
             repository.save(product);
             return true;
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             return false;
         }
     }
@@ -55,10 +53,9 @@ public class ProductServiceImpl implements ProductService {
         try {
             repository.deleteById(id);
             return true;
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             return false;
         }
-
     }
 
 }

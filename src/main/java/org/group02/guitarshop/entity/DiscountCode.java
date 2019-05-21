@@ -1,12 +1,27 @@
-package org.group02.guitarshop.model;
+package org.group02.guitarshop.entity;
 
+import javax.persistence.*;
+import java.io.Serializable;
 
-public class DiscountCode {
+@Entity
+@Table(name="DISCOUNT_CODE")
+public class DiscountCode implements Serializable {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name="Id")
   private long id;
+
+  @Column(name="Code")
   private String code;
+
+  @Column(name="Discount_Amount")
   private long discountAmount;
+
+  @Column(name="Start_Date")
   private java.sql.Timestamp startDate;
+
+  @Column(name="End_Date")
   private java.sql.Timestamp endDate;
 
 

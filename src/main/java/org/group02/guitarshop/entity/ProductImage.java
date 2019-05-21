@@ -1,10 +1,21 @@
-package org.group02.guitarshop.model;
+package org.group02.guitarshop.entity;
 
+import javax.persistence.*;
+import java.io.Serializable;
 
-public class ProductImage {
+@Entity
+@Table(name="PRODUCT_IMAGE")
+public class ProductImage implements Serializable {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name="Id")
   private long id;
+
+  @Column(name="Data")
   private String data;
+
+  @Column(name="Id_Product")
   private long idProduct;
 
 

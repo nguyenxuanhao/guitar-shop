@@ -1,10 +1,21 @@
-package org.group02.guitarshop.model;
+package org.group02.guitarshop.entity;
 
+import javax.persistence.*;
+import java.io.Serializable;
 
-public class Category {
+@Entity
+@Table(name="PRODUCT")
+public class Category  implements Serializable {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name="Id")
   private long id;
+
+  @Column(name="Name")
   private String name;
+
+  @Column(name="Metadata")
   private String metadata;
 
 

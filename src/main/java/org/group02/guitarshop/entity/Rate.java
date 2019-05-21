@@ -1,10 +1,21 @@
-package org.group02.guitarshop.model;
+package org.group02.guitarshop.entity;
 
+import javax.persistence.*;
+import java.io.Serializable;
 
-public class Rate {
+@Entity
+@Table(name="RATE")
+public class Rate implements Serializable {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name="Id")
   private long id;
+
+  @Column(name="Number_Of_Stars")
   private double numberOfStars;
+
+  @Column(name="Id_Product")
   private long idProduct;
 
 

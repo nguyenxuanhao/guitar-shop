@@ -1,15 +1,10 @@
 package org.group02.guitarshop.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name="PRODUCT")
-@EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
 public class Product implements Serializable {
 
     @Id
@@ -65,6 +60,7 @@ public class Product implements Serializable {
     @Column(name="Metadata")
     private String metadata;
 
+
     public long getId() {
         return id;
     }
@@ -108,7 +104,6 @@ public class Product implements Serializable {
     public void setAverageRate(double averageRate) {
         this.averageRate = averageRate;
     }
-
 
     public String getImageThumbnail() {
         return imageThumbnail;

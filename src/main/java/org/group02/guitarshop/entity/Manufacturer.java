@@ -1,10 +1,21 @@
-package org.group02.guitarshop.model;
+package org.group02.guitarshop.entity;
 
+import javax.persistence.*;
+import java.io.Serializable;
 
-public class Manufacturer {
+@Entity
+@Table(name="MANUFACTURER")
+public class Manufacturer implements Serializable {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name="Id")
   private long id;
+
+  @Column(name="Name")
   private String name;
+
+  @Column(name="Country")
   private String country;
 
 

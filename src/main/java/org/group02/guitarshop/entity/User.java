@@ -1,15 +1,36 @@
-package org.group02.guitarshop.model;
+package org.group02.guitarshop.entity;
 
+import javax.persistence.*;
+import java.io.Serializable;
 
-public class User {
+@Entity
+@Table(name="USER")
+public class User implements Serializable {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name="Id")
   private long id;
+
+  @Column(name="Name")
   private String name;
+
+  @Column(name="Email")
   private String email;
+
+  @Column(name="Password")
   private String password;
+
+  @Column(name="Address")
   private String address;
+
+  @Column(name="Phone")
   private String phone;
+
+  @Column(name="Avatar")
   private String avatar;
+
+  @Column(name="Participation_Time")
   private java.sql.Timestamp participationTime;
 
 
