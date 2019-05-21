@@ -1,11 +1,8 @@
 package org.group02.guitarshop.controller;
 
-import org.group02.guitarshop.exception.ResourceNotFoundException;
 import org.group02.guitarshop.entity.Product;
-import org.group02.guitarshop.repository.ProductRepository;
 import org.group02.guitarshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,14 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.List;
-
+import javax.annotation.Resource;
 
 @Controller
 public class ProductController {
     // Constructor based Dependency Injection
+
+    @Resource(name = "productService")
     private ProductService productService;
 
     public ProductController() {
@@ -35,7 +31,7 @@ public class ProductController {
     }
 
     // Get All Products
-    @RequestMapping(value = "/allProducts", method = RequestMethod.GET)
+    @RequestMapping(value = "/product", method = RequestMethod.GET)
     public String displayAllProduct(Model model) {
         System.out.println("Product Page Requested : All Products");
         model.addAttribute("productList", productService.getAllProducts());

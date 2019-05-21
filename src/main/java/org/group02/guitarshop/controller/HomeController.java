@@ -13,20 +13,10 @@ import javax.annotation.Resource;
 
 public class HomeController {
 
-    @Resource(name = "productService")
-    private ProductService productService;
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
 
         return "index";
-    }
-
-    @RequestMapping(value = "/product", method = RequestMethod.GET)
-    public String displayAllProduct(Model model) {
-        System.out.println("Product Page Requested : All Products");
-        model.addAttribute("productList", productService.getAllProducts());
-        return "product";
     }
 
 }
