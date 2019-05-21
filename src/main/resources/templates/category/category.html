@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html class="no-js"
+      th:replace="~{/shared/_layout :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #main-content}
+                                               )}"
+      xmlns:th="http://www.thymeleaf.org"> 
+<head>
+        <title>Danh sách sản phẩm - Guitar Shop</title>
+</head>
+<body>
+<div id="main-content">
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>Danh sách sản phẩm</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+    <div class="container product_list_container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="sidebar-filter mt-50 row">
+                    <div class="common-filter col-4 col-md-12">
+                        <div class="head">Thương hiệu</div>
+                        <form action="#">
+                            <ul>
+                                <li class="filter-list">
+                                    <a class="active" href="#">Tất cả<span>24</span></a>
+                                </li>
+                                <li class="filter-list">
+                                    <a href="#">STATION<span>10</span></a>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="common-filter col-4 col-md-12">
+                        <div class="head">Kiểu dáng</div>
+                        <form action="#">
+                            <ul>
+                                <li class="filter-list">
+                                    <a class="active" href="#">Tất cả<span>24</span></a>
+                                </li>
+                                <li class="filter-list">
+                                    <a href="#">Dáng D<span>10</span></a>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="common-filter col-4 col-md-12">
+                        <div class="head">Giá</div>
+                        <ul>
+                            <li class="filter-list"><a class="active" href="#">Tất cả</a></li>
+                            <li class="filter-list"><a href="#">Dưới 1.000.000đ</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-9 col-md-8" id="refreshDiv">
+                <!-- Start Product List -->
+                <section class="lattest-product-area pb-40 category-list">
+                    <div class="row">
+                        <a href="#">
+                            <div class="col-lg-4 col-md-6 col-sm-4 col-6">
+                                <div class="single-product">
+                                    <img class="img-fluid" th:src="@{/img/fav.png}" alt="">
+                                    <div class="product-details s_product_text">
+                                        <h6>Guitar 123</h6>
+                                        <div class="price">
+                                            <h6>2.700.000đ</h6>
+                                            <h6 class="l-through">3.000.000đ</h6>
+                                        </div>
+                                        <div class="prd-bottom card_area">
+                                            <a class="primary-btn" href="#">Thêm vào giỏ</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+                <!-- Start Product List -->
+
+                <!-- Start PagedList -->
+                <!--<div class="filter-bar d-flex flex-wrap align-items-center justify-content-end">
+                    @Html.PagedListPager((IPagedList)Model.ProductList, page => Url.Action("ProductList", new { brand = Model.Brand, style = Model.Style, minimunPrice = Model.MinimunPrice, maximunPrice = Model.MaximunPrice, page }))
+                </div>-->
+                <!-- End PagedList -->
+            </div>
+        </div>
+    </div>
+        
+</div>
+</body>
+</html>
