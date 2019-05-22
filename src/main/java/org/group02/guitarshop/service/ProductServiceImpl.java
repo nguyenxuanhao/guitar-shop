@@ -6,24 +6,22 @@ import java.util.List;
 import org.group02.guitarshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import org.group02.guitarshop.entity.Product;
 
-@Service("productService")
-@Transactional
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+@Service
 public class ProductServiceImpl implements ProductService {
 
+    @PersistenceContext
+    EntityManager entityManager;
+
     // Implementing Constructor based DI
-    private ProductRepository repository;
-
-    public ProductServiceImpl() { }
-
     @Autowired
-    public ProductServiceImpl(ProductRepository repository) {
-        super();
-        this.repository = repository;
-    }
+    private ProductRepository repository;
 
     @Override
     public List<Product> getAllProducts() {
@@ -33,23 +31,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProductById(Long id) {
+    public Product getProductById(Integer id) {
         Product product = repository.findById(id).get();
         return product;
     }
 
     @Override
-    public boolean addProduct(Product product) {
+    public Integer addProduct(Product product) {
         try {
             repository.save(product);
-            return true;
+            return product.getId();
         } catch (Exception ex) {
-            return false;
+            return 0;
         }
     }
 
     @Override
-    public boolean removeProduct(Long id) {
+    public boolean removeProduct(Integer id) {
         try {
             repository.deleteById(id);
             return true;
@@ -58,4 +56,15 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
+    @Override
+    public List<Product> getMostDiscountProducts() {
+        Query query = entityManager.createNativeQuery("SELECT TOP(8) * FROM PRODUCT as pd ORDER BY pd.Discount_Amount DESC", Product.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Product> getNewestProducts() {
+        Query query = entityManager.createNativeQuery("SELECT TOP(8) * FROM PRODUCT as pd ORDER BY pd.Created_Time DESC", Product.class);
+        return query.getResultList();
+    }
 }

@@ -17,24 +17,16 @@ import javax.annotation.Resource;
 @Controller
 public class ProductController {
 
-    @Resource(name = "productService")
+    @Autowired
     private ProductService productService;
 
-    public ProductController() {
-
-    }
-
-    @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
 
     // Get All Products
     @RequestMapping(value = "/product", method = RequestMethod.GET)
     public String displayAllProduct(Model model) {
         System.out.println("Product Page Requested : All Products");
         model.addAttribute("productList", productService.getAllProducts());
-        return "product";
+        return "product/product";
     }
 
 

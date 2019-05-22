@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="no-js"
-      xmlns:th="http://www.thymeleaf.org"
       th:replace="~{/shared/_layout :: main-fragment(
                                                 ~{::title},
                                                 ~{:: #main-content}
-                                               )}"> 
+                                               )}"
+      xmlns:th="http://www.thymeleaf.org"> 
 <head>
         <title>Trang chủ - Guitar Shop</title>
 </head>
@@ -21,7 +21,7 @@
             </div>
             <div class="banner_explore_button">
                 <a class="explore_btn" href="#most_discount_products">Khám phá</a>
-                <a class="contact_btn" href=#>Liên hệ</a>
+                <a class="contact_btn" href="/lien-he">Liên hệ</a>
             </div>
         </div>
     </section>
@@ -108,78 +108,32 @@
                 </div>
             </div>
             <div class="row">
-                <a href="#">
-                    <div class="col-lg-3 col-md-4 col-6">
-                        <div class="single-product">
-                            <img alt="" class="img-fluid"
-                                 th:src="@{/img/fav.png}">
-                            <div class="product-details s_product_text">
-                                <h6>Guitar ABC 123</h6>
-                                <div class="price">
-                                    <h6>2.500.000đ</h6>
-                                    <h6 class="l-through">3.000.000đ</h6>
-                                </div>
-                                <div class="prd-bottom card_area">
-                                    <a class="primary-btn" href="#">Thêm vào giỏ</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="col-lg-3 col-md-4 col-6">
-                        <div class="single-product">
-                            <img alt="" class="img-fluid"
-                                 th:src="@{/img/fav.png}">
-                            <div class="product-details s_product_text">
-                                <h6>Guitar ABC 123</h6>
-                                <div class="price">
-                                    <h6>2.500.000đ</h6>
-                                    <h6 class="l-through">3.000.000đ</h6>
-                                </div>
-                                <div class="prd-bottom card_area">
-                                    <a class="primary-btn" href="#">Thêm vào giỏ</a>
+                <th:block th:each="item:${mostDiscountProducts}">
+                    <a href="#">
+                        <div class="col-lg-3 col-md-4 col-6">
+                            <div class="single-product">
+                                <img alt="" class="img-fluid" th:src="${item.imageThumbnail}">
+                                <div class="product-details s_product_text">
+                                    <h6 th:text="${item.name}"></h6>
+                                    <div class="price">
+                                        <th:block th:if="${item.discountAmount}>0"
+                                                  th:with="discountPrice=${item.price}*(100-${item.discountAmount})/100">
+                                            <h6 th:text="${#numbers.formatDecimal(discountPrice,0,'POINT',0,'COMMA')+'đ'}"></h6>
+                                            <h6 class="l-through"
+                                                th:text="${#numbers.formatDecimal(item.price,0,'POINT',0,'COMMA')+'đ'}"></h6>
+                                        </th:block>
+                                        <th:block th:unless="${item.discountAmount}>0">
+                                            <h6 th:text="${#numbers.formatDecimal(item.price,0,'POINT',0,'COMMA')+'đ'}"></h6>
+                                        </th:block>
+                                    </div>
+                                    <div class="prd-bottom card_area">
+                                        <a class="primary-btn" href="#">Thêm vào giỏ</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="col-lg-3 col-md-4 col-6">
-                        <div class="single-product">
-                            <img alt="" class="img-fluid"
-                                 th:src="@{/img/fav.png}">
-                            <div class="product-details s_product_text">
-                                <h6>Guitar ABC 123</h6>
-                                <div class="price">
-                                    <h6>2.500.000đ</h6>
-                                    <h6 class="l-through">3.000.000đ</h6>
-                                </div>
-                                <div class="prd-bottom card_area">
-                                    <a class="primary-btn" href="#">Thêm vào giỏ</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="col-lg-3 col-md-4 col-6">
-                        <div class="single-product">
-                            <img alt="" class="img-fluid"
-                                 th:src="@{/img/fav.png}">
-                            <div class="product-details s_product_text">
-                                <h6>Guitar ABC 123</h6>
-                                <div class="price">
-                                    <h6>2.500.000đ</h6>
-                                    <h6 class="l-through">3.000.000đ</h6>
-                                </div>
-                                <div class="prd-bottom card_area">
-                                    <a class="primary-btn" href="#">Thêm vào giỏ</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                </th:block>
             </div>
         </div>
     </section>
@@ -195,78 +149,32 @@
                 </div>
             </div>
             <div class="row">
-                <a href="#">
-                    <div class="col-lg-3 col-md-4 col-6">
-                        <div class="single-product">
-                            <img alt="" class="img-fluid"
-                                 th:src="@{/img/fav.png}">
-                            <div class="product-details s_product_text">
-                                <h6>Guitar ABC 123</h6>
-                                <div class="price">
-                                    <h6>2.500.000đ</h6>
-                                    <h6 class="l-through">3.000.000đ</h6>
-                                </div>
-                                <div class="prd-bottom card_area">
-                                    <a class="primary-btn" href="#">Thêm vào giỏ</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="col-lg-3 col-md-4 col-6">
-                        <div class="single-product">
-                            <img alt="" class="img-fluid"
-                                 th:src="@{/img/fav.png}">
-                            <div class="product-details s_product_text">
-                                <h6>Guitar ABC 123</h6>
-                                <div class="price">
-                                    <h6>2.500.000đ</h6>
-                                    <h6 class="l-through">3.000.000đ</h6>
-                                </div>
-                                <div class="prd-bottom card_area">
-                                    <a class="primary-btn" href="#">Thêm vào giỏ</a>
+                <th:block th:each="item:${newestProducts}">
+                    <a href="#">
+                        <div class="col-lg-3 col-md-4 col-6">
+                            <div class="single-product">
+                                <img alt="" class="img-fluid" th:src="${item.imageThumbnail}">
+                                <div class="product-details s_product_text">
+                                    <h6 th:text="${item.name}"></h6>
+                                    <div class="price">
+                                        <th:block th:if="${item.discountAmount}>0"
+                                                  th:with="discountPrice=${item.price}*(100-${item.discountAmount})/100">
+                                            <h6 th:text="${#numbers.formatDecimal(discountPrice,0,'POINT',0,'COMMA')+'đ'}"></h6>
+                                            <h6 class="l-through"
+                                                th:text="${#numbers.formatDecimal(item.price,0,'POINT',0,'COMMA')+'đ'}"></h6>
+                                        </th:block>
+                                        <th:block th:unless="${item.discountAmount}>0">
+                                            <h6 th:text="${#numbers.formatDecimal(item.price,0,'POINT',0,'COMMA')+'đ'}"></h6>
+                                        </th:block>
+                                    </div>
+                                    <div class="prd-bottom card_area">
+                                        <a class="primary-btn" href="#">Thêm vào giỏ</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="col-lg-3 col-md-4 col-6">
-                        <div class="single-product">
-                            <img alt="" class="img-fluid"
-                                 th:src="@{/img/fav.png}">
-                            <div class="product-details s_product_text">
-                                <h6>Guitar ABC 123</h6>
-                                <div class="price">
-                                    <h6>2.500.000đ</h6>
-                                    <h6 class="l-through">3.000.000đ</h6>
-                                </div>
-                                <div class="prd-bottom card_area">
-                                    <a class="primary-btn" href="#">Thêm vào giỏ</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="col-lg-3 col-md-4 col-6">
-                        <div class="single-product">
-                            <img alt="" class="img-fluid"
-                                 th:src="@{/img/fav.png}">
-                            <div class="product-details s_product_text">
-                                <h6>Guitar ABC 123</h6>
-                                <div class="price">
-                                    <h6>2.500.000đ</h6>
-                                    <h6 class="l-through">3.000.000đ</h6>
-                                </div>
-                                <div class="prd-bottom card_area">
-                                    <a class="primary-btn" href="#">Thêm vào giỏ</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                </th:block>
             </div>
         </div>
     </section>

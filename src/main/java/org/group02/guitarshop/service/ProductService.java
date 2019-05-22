@@ -6,9 +6,12 @@ import java.util.List;
 
 public interface ProductService {
 
-    boolean addProduct(Product p);
+    Integer addProduct(Product p);
     List<Product> getAllProducts();
-    Product getProductById(Long id);
-    boolean removeProduct(Long id);
+    Product getProductById(Integer id);
+    boolean removeProduct(Integer id);
+
+    List<Product> getMostDiscountProducts();
+    List<Product> getNewestProducts();
 
 }
