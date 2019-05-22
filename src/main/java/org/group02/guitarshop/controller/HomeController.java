@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-
 public class HomeController {
     @Autowired
     private ProductService productService;
@@ -17,6 +16,7 @@ public class HomeController {
     public String home(Model model) {
         model.addAttribute("mostDiscountProducts", productService.getMostDiscountProducts());
         model.addAttribute("newestProducts", productService.getNewestProducts());
+
         return "/home/index";
     }
 }

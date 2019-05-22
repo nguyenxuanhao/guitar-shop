@@ -1,75 +1,48 @@
 package org.group02.guitarshop.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.sql.Date;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name="PRODUCT")
-public class Product implements Serializable {
+public class Product {
+    private int id;
+    private String name;
+    private Double price;
+    private Integer discountAmount;
+    private Double averageRate;
+    private String imageThumbnail;
+    private String status;
+    private String modelNumber;
+    private String description;
+    private String style;
+    private String material;
+    private String warrantyPeriod;
+    private String stringMaterial;
+    private Date createdTime;
+    private Integer idCategory;
+    private Integer idManufacturer;
+    private String metadata;
+    private Collection<InvoiceDetail> invoiceDetailsById;
+    private Category categoryByIdCategory;
+    private Manufacturer manufacturerByIdManufacturer;
+    private Collection<ProductImage> productImagesById;
+    private Collection<Rate> ratesById;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Id")
-    private Integer id;
-
-    @Column(name="Name")
-    private String name;
-
-    @Column(name="Price")
-    private String price;
-
-    @Column(name="Discount_Amount")
-    private long discountAmount;
-
-    @Column(name="Average_Rate")
-    private double averageRate;
-
-    @Column(name="Image_Thumbnail")
-    private String imageThumbnail;
-
-    @Column(name="Status")
-    private String status;
-
-    @Column(name="Model_Number")
-    private String modelNumber;
-
-    @Column(name="Description")
-    private String description;
-
-    @Column(name="Style")
-    private String style;
-
-    @Column(name="Material")
-    private String material;
-
-    @Column(name="Warranty_Period")
-    private String warrantyPeriod;
-
-    @Column(name="String_Material")
-    private String stringMaterial;
-
-    @Column(name="Created_Time")
-    private java.sql.Timestamp createdTime;
-
-    @Column(name="Id_Category")
-    private long idCategory;
-
-    @Column(name="Id_Manufacturer")
-    private long idManufacturer;
-
-    @Column(name="Metadata")
-    private String metadata;
-
-
-    public Integer getId() {
+    @Column(name = "Id", nullable = false)
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-
+    @Basic
+    @Column(name = "Name", nullable = true, length = 255)
     public String getName() {
         return name;
     }
@@ -78,33 +51,38 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-
-    public String getPrice() {
+    @Basic
+    @Column(name = "Price", nullable = true)
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-
-    public long getDiscountAmount() {
+    @Basic
+    @Column(name = "Discount_Amount", nullable = true)
+    public Integer getDiscountAmount() {
         return discountAmount;
     }
 
-    public void setDiscountAmount(long discountAmount) {
+    public void setDiscountAmount(Integer discountAmount) {
         this.discountAmount = discountAmount;
     }
 
-
-    public double getAverageRate() {
+    @Basic
+    @Column(name = "Average_Rate", nullable = true, precision = 0)
+    public Double getAverageRate() {
         return averageRate;
     }
 
-    public void setAverageRate(double averageRate) {
+    public void setAverageRate(Double averageRate) {
         this.averageRate = averageRate;
     }
 
+    @Basic
+    @Column(name = "Image_Thumbnail", nullable = true, length = 2147483647)
     public String getImageThumbnail() {
         return imageThumbnail;
     }
@@ -113,7 +91,8 @@ public class Product implements Serializable {
         this.imageThumbnail = imageThumbnail;
     }
 
-
+    @Basic
+    @Column(name = "Status", nullable = true, length = 255)
     public String getStatus() {
         return status;
     }
@@ -122,7 +101,8 @@ public class Product implements Serializable {
         this.status = status;
     }
 
-
+    @Basic
+    @Column(name = "Model_Number", nullable = true, length = 255)
     public String getModelNumber() {
         return modelNumber;
     }
@@ -131,7 +111,8 @@ public class Product implements Serializable {
         this.modelNumber = modelNumber;
     }
 
-
+    @Basic
+    @Column(name = "Description", nullable = true, length = 1255)
     public String getDescription() {
         return description;
     }
@@ -140,7 +121,8 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-
+    @Basic
+    @Column(name = "Style", nullable = true, length = 255)
     public String getStyle() {
         return style;
     }
@@ -149,7 +131,8 @@ public class Product implements Serializable {
         this.style = style;
     }
 
-
+    @Basic
+    @Column(name = "Material", nullable = true, length = 255)
     public String getMaterial() {
         return material;
     }
@@ -158,7 +141,8 @@ public class Product implements Serializable {
         this.material = material;
     }
 
-
+    @Basic
+    @Column(name = "Warranty_Period", nullable = true, length = 255)
     public String getWarrantyPeriod() {
         return warrantyPeriod;
     }
@@ -167,7 +151,8 @@ public class Product implements Serializable {
         this.warrantyPeriod = warrantyPeriod;
     }
 
-
+    @Basic
+    @Column(name = "String_Material", nullable = true, length = 255)
     public String getStringMaterial() {
         return stringMaterial;
     }
@@ -176,34 +161,38 @@ public class Product implements Serializable {
         this.stringMaterial = stringMaterial;
     }
 
-
-    public java.sql.Timestamp getCreatedTime() {
+    @Basic
+    @Column(name = "Created_Time", nullable = true)
+    public Date getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(java.sql.Timestamp createdTime) {
+    public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 
-
-    public long getIdCategory() {
+    @Basic
+    @Column(name = "Id_Category", nullable = true)
+    public Integer getIdCategory() {
         return idCategory;
     }
 
-    public void setIdCategory(long idCategory) {
+    public void setIdCategory(Integer idCategory) {
         this.idCategory = idCategory;
     }
 
-
-    public long getIdManufacturer() {
+    @Basic
+    @Column(name = "Id_Manufacturer", nullable = true)
+    public Integer getIdManufacturer() {
         return idManufacturer;
     }
 
-    public void setIdManufacturer(long idManufacturer) {
+    public void setIdManufacturer(Integer idManufacturer) {
         this.idManufacturer = idManufacturer;
     }
 
-
+    @Basic
+    @Column(name = "Metadata", nullable = true, length = 255)
     public String getMetadata() {
         return metadata;
     }
@@ -212,4 +201,79 @@ public class Product implements Serializable {
         this.metadata = metadata;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id == product.id &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(price, product.price) &&
+                Objects.equals(discountAmount, product.discountAmount) &&
+                Objects.equals(averageRate, product.averageRate) &&
+                Objects.equals(imageThumbnail, product.imageThumbnail) &&
+                Objects.equals(status, product.status) &&
+                Objects.equals(modelNumber, product.modelNumber) &&
+                Objects.equals(description, product.description) &&
+                Objects.equals(style, product.style) &&
+                Objects.equals(material, product.material) &&
+                Objects.equals(warrantyPeriod, product.warrantyPeriod) &&
+                Objects.equals(stringMaterial, product.stringMaterial) &&
+                Objects.equals(createdTime, product.createdTime) &&
+                Objects.equals(idCategory, product.idCategory) &&
+                Objects.equals(idManufacturer, product.idManufacturer) &&
+                Objects.equals(metadata, product.metadata);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, discountAmount, averageRate, imageThumbnail, status, modelNumber, description, style, material, warrantyPeriod, stringMaterial, createdTime, idCategory, idManufacturer, metadata);
+    }
+
+    @OneToMany(mappedBy = "productByIdProduct")
+    public Collection<InvoiceDetail> getInvoiceDetailsById() {
+        return invoiceDetailsById;
+    }
+
+    public void setInvoiceDetailsById(Collection<InvoiceDetail> invoiceDetailsById) {
+        this.invoiceDetailsById = invoiceDetailsById;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "Id_Category", referencedColumnName = "Id", insertable = false, updatable = false)
+    public Category getCategoryByIdCategory() {
+        return categoryByIdCategory;
+    }
+
+    public void setCategoryByIdCategory(Category categoryByIdCategory) {
+        this.categoryByIdCategory = categoryByIdCategory;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "Id_Manufacturer", referencedColumnName = "Id", insertable = false, updatable = false)
+    public Manufacturer getManufacturerByIdManufacturer() {
+        return manufacturerByIdManufacturer;
+    }
+
+    public void setManufacturerByIdManufacturer(Manufacturer manufacturerByIdManufacturer) {
+        this.manufacturerByIdManufacturer = manufacturerByIdManufacturer;
+    }
+
+    @OneToMany(mappedBy = "productByIdProduct")
+    public Collection<ProductImage> getProductImagesById() {
+        return productImagesById;
+    }
+
+    public void setProductImagesById(Collection<ProductImage> productImagesById) {
+        this.productImagesById = productImagesById;
+    }
+
+    @OneToMany(mappedBy = "productByIdProduct")
+    public Collection<Rate> getRatesById() {
+        return ratesById;
+    }
+
+    public void setRatesById(Collection<Rate> ratesById) {
+        this.ratesById = ratesById;
+    }
 }
