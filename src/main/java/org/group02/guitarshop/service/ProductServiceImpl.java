@@ -15,15 +15,8 @@ import org.group02.guitarshop.entity.Product;
 public class ProductServiceImpl implements ProductService {
 
     // Implementing Constructor based DI
-    private ProductRepository repository;
-
-    public ProductServiceImpl() { }
-
     @Autowired
-    public ProductServiceImpl(ProductRepository repository) {
-        super();
-        this.repository = repository;
-    }
+    private ProductRepository repository;
 
     @Override
     public List<Product> getAllProducts() {
@@ -33,23 +26,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProductById(Long id) {
+    public Product getProductById(Integer id) {
         Product product = repository.findById(id).get();
         return product;
     }
 
     @Override
-    public boolean addProduct(Product product) {
+    public Integer addProduct(Product product) {
         try {
             repository.save(product);
-            return true;
+            return product.getId();
         } catch (Exception ex) {
-            return false;
+            return 0;
         }
     }
 
     @Override
-    public boolean removeProduct(Long id) {
+    public boolean removeProduct(Integer id) {
         try {
             repository.deleteById(id);
             return true;
@@ -58,4 +51,13 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
+    /*@Override
+    List<Product> getMostDiscountProducts() {
+
+    }
+
+    @Override
+    List<Product> getNewestDiscountProduct() {
+
+    }*/
 }
