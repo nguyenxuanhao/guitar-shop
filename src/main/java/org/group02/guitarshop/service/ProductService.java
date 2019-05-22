@@ -11,7 +11,7 @@ public interface ProductService {
     Product getProductById(Integer id);
     boolean removeProduct(Integer id);
 
-    /*List<Product> getMostDiscountProducts();
-    List<Product> getNewestDiscountProduct();*/
+    List<Product> getMostDiscountProducts();
+    List<Product> getNewestDiscountProduct();
 
 }

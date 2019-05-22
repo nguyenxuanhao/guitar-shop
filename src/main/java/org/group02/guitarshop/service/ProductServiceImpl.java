@@ -10,9 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import org.group02.guitarshop.entity.Product;
 
-@Service("productService")
-@Transactional
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+@Service
 public class ProductServiceImpl implements ProductService {
+
+    private EntityManager entityManager;
 
     // Implementing Constructor based DI
     @Autowired
@@ -51,13 +55,16 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
-    /*@Override
+    @Override
     List<Product> getMostDiscountProducts() {
-
+        Query query = entityManager.createNativeQuery("SELECT * FROM GUITARSHOP.PRODUCT as pd  " +
+                "WHERE em.firstname LIKE ?", Employee.class);
+        query.setParameter(1, firstName + "%");
+        return query.getResultList();
     }
 
     @Override
     List<Product> getNewestDiscountProduct() {
 
-    }*/
+    }
 }
