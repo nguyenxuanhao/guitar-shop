@@ -3,17 +3,17 @@ package org.group02.guitarshop.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.group02.guitarshop.entity.Manufacturer;
+import org.group02.guitarshop.entity.Product;
 import org.group02.guitarshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import org.group02.guitarshop.entity.Product;
-
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
-@Service
+@Service("productService")
+@Transactional
 public class ProductServiceImpl implements ProductService {
 
     private EntityManager entityManager;
@@ -26,6 +26,13 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getAllProducts() {
         List list = new ArrayList();
         repository.findAll().forEach(e -> list.add(e));
+        return list;
+    }
+
+    @Override
+    public List<Manufacturer> getAllManufacturers() {
+        List list = new ArrayList();
+        repository.findAll().forEach(e -> list.add(e.getManufacturerByIdManufacturer()));
         return list;
     }
 
@@ -55,16 +62,20 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
-    @Override
-    List<Product> getMostDiscountProducts() {
-        Query query = entityManager.createNativeQuery("SELECT * FROM GUITARSHOP.PRODUCT as pd  " +
-                "WHERE em.firstname LIKE ?", Employee.class);
-        query.setParameter(1, firstName + "%");
-        return query.getResultList();
-    }
+//    @Override
+//    public List<Product> getMostDiscountProducts() {
+//        Query query = entityManager.createNativeQuery("SELECT * FROM GUITARSHOP.PRODUCT as pd  " +
+//                "WHERE em.firstname LIKE ?", Employee.class);
+//        query.setParameter(1, firstName + "%");
+//        return query.getResultList();
+//    }
+//
+//    @Override
+//    public List<Product> getNewestDiscountProducts() {
+//        Query query = entityManager.createNativeQuery("SELECT * FROM GUITARSHOP.PRODUCT as pd  " +
+//                "WHERE em.firstname LIKE ?", Employee.class);
+//        query.setParameter(1, firstName + "%");
+//        return query.getResultList();
+//    }
 
-    @Override
-    List<Product> getNewestDiscountProduct() {
-
-    }
 }

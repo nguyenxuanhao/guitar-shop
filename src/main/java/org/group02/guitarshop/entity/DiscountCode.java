@@ -1,72 +1,93 @@
 package org.group02.guitarshop.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.sql.Date;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@Table(name="DISCOUNT_CODE")
-public class DiscountCode implements Serializable {
+@Table(name = "DISCOUNT_CODE", schema = "dbo", catalog = "GUITARSHOP")
+public class DiscountCode {
+    private int id;
+    private String code;
+    private Integer discountAmount;
+    private Date startDate;
+    private Date endDate;
+    private Collection<Invoice> invoicesById;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name="Id")
-  private long id;
+    @Id
+    @Column(name = "Id", nullable = false)
+    public int getId() {
+        return id;
+    }
 
-  @Column(name="Code")
-  private String code;
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  @Column(name="Discount_Amount")
-  private long discountAmount;
+    @Basic
+    @Column(name = "Code", nullable = true, length = 255)
+    public String getCode() {
+        return code;
+    }
 
-  @Column(name="Start_Date")
-  private java.sql.Timestamp startDate;
+    public void setCode(String code) {
+        this.code = code;
+    }
 
-  @Column(name="End_Date")
-  private java.sql.Timestamp endDate;
+    @Basic
+    @Column(name = "Discount_Amount", nullable = true)
+    public Integer getDiscountAmount() {
+        return discountAmount;
+    }
 
+    public void setDiscountAmount(Integer discountAmount) {
+        this.discountAmount = discountAmount;
+    }
 
-  public long getId() {
-    return id;
-  }
+    @Basic
+    @Column(name = "Start_Date", nullable = true)
+    public Date getStartDate() {
+        return startDate;
+    }
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
 
+    @Basic
+    @Column(name = "End_Date", nullable = true)
+    public Date getEndDate() {
+        return endDate;
+    }
 
-  public String getCode() {
-    return code;
-  }
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 
-  public void setCode(String code) {
-    this.code = code;
-  }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DiscountCode that = (DiscountCode) o;
+        return id == that.id &&
+                Objects.equals(code, that.code) &&
+                Objects.equals(discountAmount, that.discountAmount) &&
+                Objects.equals(startDate, that.startDate) &&
+                Objects.equals(endDate, that.endDate);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, code, discountAmount, startDate, endDate);
+    }
 
-  public long getDiscountAmount() {
-    return discountAmount;
-  }
+    @OneToMany(mappedBy = "discountCodeByIdDiscountCode")
+    public Collection<Invoice> getInvoicesById() {
+        return invoicesById;
+    }
 
-  public void setDiscountAmount(long discountAmount) {
-    this.discountAmount = discountAmount;
-  }
-
-
-  public java.sql.Timestamp getStartDate() {
-    return startDate;
-  }
-
-  public void setStartDate(java.sql.Timestamp startDate) {
-    this.startDate = startDate;
-  }
-
-
-  public java.sql.Timestamp getEndDate() {
-    return endDate;
-  }
-
-  public void setEndDate(java.sql.Timestamp endDate) {
-    this.endDate = endDate;
-  }
-
+    public void setInvoicesById(Collection<Invoice> invoicesById) {
+        this.invoicesById = invoicesById;
+    }
 }

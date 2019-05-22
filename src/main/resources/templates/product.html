@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html class="no-js">
+<head>
+    <title>Product</title>
+
+    <style>
+        th, td {
+            padding: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<h2>Product List</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+    <tr th:each="p : ${manufacturerList}">
+        <td th:utext="${p.id}">..</td>
+        <td th:utext="${p.name}">..</td>
+        <td th:utext="${p.country}">..</td>
+    </tr>
+
+</table>
+</body>
+</html>
