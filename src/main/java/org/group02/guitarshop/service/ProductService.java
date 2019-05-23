@@ -11,6 +11,9 @@ public interface ProductService {
     Product getProductById(Integer id);
     boolean removeProduct(Integer id);
 
+    List<Product> searchProducts(String searchString);
+
+
     /*List<Product> getMostDiscountProducts();
     List<Product> getNewestDiscountProduct();*/
 

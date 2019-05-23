@@ -20,21 +20,17 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    public ProductController() {
-
-    }
-
-    @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
-
     // Get All Products
     @RequestMapping(value = "/product", method = RequestMethod.GET)
     public String displayAllProduct(Model model) {
         System.out.println("Product Page Requested : All Products");
         model.addAttribute("productList", productService.getAllProducts());
-        return "product/product";
+        return "product/product-detail";
+    }
+    @RequestMapping(value = "/product",method = RequestMethod.GET)
+    public String productDetail(String name, Integer Id, Model model){
+        model.addAttribute("product",productService.getProductById(Id));
+        return "product/product-detail";
     }
 
 

@@ -51,6 +51,16 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
+    @Override
+    public List<Product> searchProducts(String searchString) {
+        List<Product> result = new ArrayList<>();
+        for (Product p:repository.findAll()) {
+            if(p.getName().toLowerCase().contains(searchString.toLowerCase()))
+                result.add(p);
+        }
+        return result;
+    }
+
     /*@Override
     List<Product> getMostDiscountProducts() {
 

@@ -28,7 +28,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="s_Product_carousel">
                         <div class="single-prd-item">
-                            <img alt="" class="img-fluid" th:src="@{/img/fav.png}">
+                            <img alt="" class="img-fluid" th:src="${product.getImageThumbnail()}">
                         </div>
                         <div class="single-prd-item">
                             <img alt="" class="img-fluid" th:src="@{/img/fav.png}">
@@ -37,11 +37,11 @@
                 </div>
                 <div class="col-md-6 offset-lg-1">
                     <div class="s_product_text">
-                        <h3>Guitar 123</h3>
-                        <h2>2.700.000đ</h2>
-                        <h4 class="l-through">3.000.000đ</h4>
+                        <h3 th:text="${product.getName()}"></h3>
+                        <h2 th:text="${product.getPrice()}">đ</h2>
+                        <h4 class="l-through" th:text="${product.getPrice()}">đ</h4>
                         <ul class="list">
-                            <li><a href="#"><span>Loại đàn: </span> Classic</a></li>
+                            <li th:text="${product.}"><a href="#"><span>Loại đàn: </span> </a></li>
                             <li><a href="#"><span>Mã SP: </span> 123123</a></li>
                             <li><a href="#"><span>Tình trạng: </span> Còn hàng</a></li>
                             <li><a href="#"><span>Bảo hành: </span> 1 năm</a></li>
