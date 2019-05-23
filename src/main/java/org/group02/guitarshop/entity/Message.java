@@ -1,12 +1,10 @@
 package org.group02.guitarshop.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "MESSAGE", schema = "dbo", catalog = "GUITARSHOP")
 public class Message {
     private int id;
     private String name;

@@ -1,11 +1,12 @@
 package org.group02.guitarshop.entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@Table(name = "INVOICE", schema = "dbo", catalog = "GUITARSHOP")
 public class Invoice {
     private int id;
     private String customerName;
@@ -15,7 +16,7 @@ public class Invoice {
     private String customerMessage;
     private Double total;
     private String paymentMethod;
-    private Timestamp createdTime;
+    private Date createdTime;
     private Integer idUser;
     private Integer idDiscountCode;
     private Integer status;
@@ -105,11 +106,11 @@ public class Invoice {
 
     @Basic
     @Column(name = "Created_Time", nullable = true)
-    public Timestamp getCreatedTime() {
+    public Date getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(Timestamp createdTime) {
+    public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 

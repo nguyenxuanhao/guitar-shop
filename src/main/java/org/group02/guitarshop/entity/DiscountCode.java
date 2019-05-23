@@ -1,7 +1,7 @@
 package org.group02.guitarshop.entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -11,8 +11,8 @@ public class DiscountCode {
     private int id;
     private String code;
     private Integer discountAmount;
-    private Timestamp startDate;
-    private Timestamp endDate;
+    private Date startDate;
+    private Date endDate;
     private Collection<Invoice> invoicesById;
 
     @Id
@@ -47,21 +47,21 @@ public class DiscountCode {
 
     @Basic
     @Column(name = "Start_Date", nullable = true)
-    public Timestamp getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Timestamp startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
     @Basic
     @Column(name = "End_Date", nullable = true)
-    public Timestamp getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Timestamp endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 

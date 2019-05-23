@@ -1,11 +1,12 @@
 package org.group02.guitarshop.entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@Table(name = "USER", schema = "dbo", catalog = "GUITARSHOP")
 public class User {
     private int id;
     private String name;
@@ -14,7 +15,7 @@ public class User {
     private String address;
     private String phone;
     private String avatar;
-    private Timestamp participationTime;
+    private Date participationTime;
     private Collection<Invoice> invoicesById;
 
     @Id
@@ -89,11 +90,11 @@ public class User {
 
     @Basic
     @Column(name = "Participation_Time", nullable = true)
-    public Timestamp getParticipationTime() {
+    public Date getParticipationTime() {
         return participationTime;
     }
 
-    public void setParticipationTime(Timestamp participationTime) {
+    public void setParticipationTime(Date participationTime) {
         this.participationTime = participationTime;
     }
 
