@@ -1,5 +1,7 @@
 package org.group02.guitarshop.controller;
 
+import org.group02.guitarshop.repository.CategoryRepository;
+import org.group02.guitarshop.service.CategoryService;
 import org.group02.guitarshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,11 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CategoryService categoryService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
         model.addAttribute("mostDiscountProducts", productService.getMostDiscountProducts());
         model.addAttribute("newestProducts", productService.getNewestProducts());
+        model.addAttribute("categoryList",categoryService.getAllCategories());
 
         return "/home/index";
     }

@@ -1,6 +1,5 @@
 package org.group02.guitarshop.service;
 
-import org.group02.guitarshop.entity.Manufacturer;
 import org.group02.guitarshop.entity.Product;
 import org.group02.guitarshop.entity.ProductImage;
 

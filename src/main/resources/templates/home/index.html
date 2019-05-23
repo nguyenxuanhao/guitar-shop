@@ -78,21 +78,13 @@
     <section class="category_area">
         <div class="container">
             <div class="categories_home row">
-                <div class="col-md-4 single_category">
-                    <a href="#">
-                        <h3>Acoustic Guitars <i class="fa fa-angle-right"></i></h3>
-                    </a>
-                </div>
-                <div class="col-md-4 single_category">
-                    <a href="#">
-                        <h3>Classic Guitars <i class="fa fa-angle-right"></i></h3>
-                    </a>
-                </div>
-                <div class="col-md-4 single_category">
-                    <a href="#">
-                        <h3>Guitar có EQ <i class="fa fa-angle-right"></i></h3>
-                    </a>
-                </div>
+                <th:block th:each="item:${categoryList}">
+                    <div class="col-md-4 single_category">
+                        <a href="#">
+                            <h3>[[${item.name}]] <i class="fa fa-angle-right"></i></h3>
+                        </a>
+                    </div>
+                </th:block>
             </div>
         </div>
     </section>
