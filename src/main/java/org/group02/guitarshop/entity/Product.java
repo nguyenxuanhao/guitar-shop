@@ -1,12 +1,11 @@
 package org.group02.guitarshop.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name="PRODUCT")
 public class Product {
     private int id;
     private String name;
@@ -21,7 +20,7 @@ public class Product {
     private String material;
     private String warrantyPeriod;
     private String stringMaterial;
-    private Date createdTime;
+    private Timestamp createdTime;
     private Integer idCategory;
     private Integer idManufacturer;
     private String metadata;
@@ -163,11 +162,11 @@ public class Product {
 
     @Basic
     @Column(name = "Created_Time", nullable = true)
-    public Date getCreatedTime() {
+    public Timestamp getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(Date createdTime) {
+    public void setCreatedTime(Timestamp createdTime) {
         this.createdTime = createdTime;
     }
 

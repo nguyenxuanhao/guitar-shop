@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name="MANUFACTURER")
 public class Manufacturer {
     private int id;
     private String name;

@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name="RATE")
 public class Rate {
     private int id;
     private Double numberOfStars;

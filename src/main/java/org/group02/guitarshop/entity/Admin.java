@@ -1,10 +1,12 @@
 package org.group02.guitarshop.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-@Table(name="ADMIN")
 public class Admin {
     private int id;
     private String name;

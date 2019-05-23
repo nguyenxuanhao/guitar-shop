@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name="CATEGORY")
 public class Category {
     private int id;
     private String name;
