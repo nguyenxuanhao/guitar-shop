@@ -1,108 +1,129 @@
 package org.group02.guitarshop.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.sql.Date;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name="USER")
-public class User implements Serializable {
+public class User {
+    private int id;
+    private String name;
+    private String email;
+    private String password;
+    private String address;
+    private String phone;
+    private String avatar;
+    private Date participationTime;
+    private Collection<Invoice> invoicesById;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name="Id")
-  private long id;
+    @Id
+    @Column(name = "Id", nullable = false)
+    public int getId() {
+        return id;
+    }
 
-  @Column(name="Name")
-  private String name;
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  @Column(name="Email")
-  private String email;
+    @Basic
+    @Column(name = "Name", nullable = true, length = 255)
+    public String getName() {
+        return name;
+    }
 
-  @Column(name="Password")
-  private String password;
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  @Column(name="Address")
-  private String address;
+    @Basic
+    @Column(name = "Email", nullable = true, length = 255)
+    public String getEmail() {
+        return email;
+    }
 
-  @Column(name="Phone")
-  private String phone;
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-  @Column(name="Avatar")
-  private String avatar;
+    @Basic
+    @Column(name = "Password", nullable = true, length = 255)
+    public String getPassword() {
+        return password;
+    }
 
-  @Column(name="Participation_Time")
-  private java.sql.Timestamp participationTime;
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
+    @Basic
+    @Column(name = "Address", nullable = true, length = 255)
+    public String getAddress() {
+        return address;
+    }
 
-  public long getId() {
-    return id;
-  }
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    @Basic
+    @Column(name = "Phone", nullable = true, length = 20)
+    public String getPhone() {
+        return phone;
+    }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-  public String getName() {
-    return name;
-  }
+    @Basic
+    @Column(name = "Avatar", nullable = true, length = 2147483647)
+    public String getAvatar() {
+        return avatar;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
+    @Basic
+    @Column(name = "Participation_Time", nullable = true)
+    public Date getParticipationTime() {
+        return participationTime;
+    }
 
-  public String getEmail() {
-    return email;
-  }
+    public void setParticipationTime(Date participationTime) {
+        this.participationTime = participationTime;
+    }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(address, user.address) &&
+                Objects.equals(phone, user.phone) &&
+                Objects.equals(avatar, user.avatar) &&
+                Objects.equals(participationTime, user.participationTime);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email, password, address, phone, avatar, participationTime);
+    }
 
-  public String getPassword() {
-    return password;
-  }
+    @OneToMany(mappedBy = "userByIdUser")
+    public Collection<Invoice> getInvoicesById() {
+        return invoicesById;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-
-  public String getAddress() {
-    return address;
-  }
-
-  public void setAddress(String address) {
-    this.address = address;
-  }
-
-
-  public String getPhone() {
-    return phone;
-  }
-
-  public void setPhone(String phone) {
-    this.phone = phone;
-  }
-
-
-  public String getAvatar() {
-    return avatar;
-  }
-
-  public void setAvatar(String avatar) {
-    this.avatar = avatar;
-  }
-
-
-  public java.sql.Timestamp getParticipationTime() {
-    return participationTime;
-  }
-
-  public void setParticipationTime(java.sql.Timestamp participationTime) {
-    this.participationTime = participationTime;
-  }
-
+    public void setInvoicesById(Collection<Invoice> invoicesById) {
+        this.invoicesById = invoicesById;
+    }
 }

@@ -1,144 +1,187 @@
 package org.group02.guitarshop.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.sql.Date;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name="INVOICE")
-public class Invoice implements Serializable {
+public class Invoice {
+    private int id;
+    private String customerName;
+    private String customerEmail;
+    private String customerPhone;
+    private String customerAddress;
+    private String customerMessage;
+    private Double total;
+    private String paymentMethod;
+    private Date createdTime;
+    private Integer idUser;
+    private Integer idDiscountCode;
+    private User userByIdUser;
+    private DiscountCode discountCodeByIdDiscountCode;
+    private Collection<InvoiceDetail> invoiceDetailsById;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name="Id")
-  private long id;
+    @Id
+    @Column(name = "Id", nullable = false)
+    public int getId() {
+        return id;
+    }
 
-  @Column(name="Customer_Name")
-  private String customerName;
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  @Column(name="Customer_Email")
-  private String customerEmail;
+    @Basic
+    @Column(name = "Customer_Name", nullable = true, length = 255)
+    public String getCustomerName() {
+        return customerName;
+    }
 
-  @Column(name="Customer_Phone")
-  private String customerPhone;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
 
-  @Column(name="Customer_Address")
-  private String customerAddress;
+    @Basic
+    @Column(name = "Customer_Email", nullable = true, length = 255)
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
 
-  @Column(name="Customer_Message")
-  private String customerMessage;
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
+    }
 
-  @Column(name="Total")
-  private String total;
+    @Basic
+    @Column(name = "Customer_Phone", nullable = true, length = 20)
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
 
-  @Column(name="Payment_Method")
-  private String paymentMethod;
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
+    }
 
-  @Column(name="Created_Time")
-  private java.sql.Timestamp createdTime;
+    @Basic
+    @Column(name = "Customer_Address", nullable = true, length = 1255)
+    public String getCustomerAddress() {
+        return customerAddress;
+    }
 
-  @Column(name="Id_User")
-  private long idUser;
+    public void setCustomerAddress(String customerAddress) {
+        this.customerAddress = customerAddress;
+    }
 
-  @Column(name="Id_Discount_Code")
-  private long idDiscountCode;
+    @Basic
+    @Column(name = "Customer_Message", nullable = true, length = 1255)
+    public String getCustomerMessage() {
+        return customerMessage;
+    }
 
+    public void setCustomerMessage(String customerMessage) {
+        this.customerMessage = customerMessage;
+    }
 
-  public long getId() {
-    return id;
-  }
+    @Basic
+    @Column(name = "Total", nullable = true)
+    public Double getTotal() {
+        return total;
+    }
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    public void setTotal(Double total) {
+        this.total = total;
+    }
 
+    @Basic
+    @Column(name = "Payment_Method", nullable = true, length = 255)
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
 
-  public String getCustomerName() {
-    return customerName;
-  }
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
 
-  public void setCustomerName(String customerName) {
-    this.customerName = customerName;
-  }
+    @Basic
+    @Column(name = "Created_Time", nullable = true)
+    public Date getCreatedTime() {
+        return createdTime;
+    }
 
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
 
-  public String getCustomerEmail() {
-    return customerEmail;
-  }
+    @Basic
+    @Column(name = "Id_User", nullable = true)
+    public Integer getIdUser() {
+        return idUser;
+    }
 
-  public void setCustomerEmail(String customerEmail) {
-    this.customerEmail = customerEmail;
-  }
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
+    }
 
+    @Basic
+    @Column(name = "Id_Discount_Code", nullable = true)
+    public Integer getIdDiscountCode() {
+        return idDiscountCode;
+    }
 
-  public String getCustomerPhone() {
-    return customerPhone;
-  }
+    public void setIdDiscountCode(Integer idDiscountCode) {
+        this.idDiscountCode = idDiscountCode;
+    }
 
-  public void setCustomerPhone(String customerPhone) {
-    this.customerPhone = customerPhone;
-  }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Invoice invoice = (Invoice) o;
+        return id == invoice.id &&
+                Objects.equals(customerName, invoice.customerName) &&
+                Objects.equals(customerEmail, invoice.customerEmail) &&
+                Objects.equals(customerPhone, invoice.customerPhone) &&
+                Objects.equals(customerAddress, invoice.customerAddress) &&
+                Objects.equals(customerMessage, invoice.customerMessage) &&
+                Objects.equals(total, invoice.total) &&
+                Objects.equals(paymentMethod, invoice.paymentMethod) &&
+                Objects.equals(createdTime, invoice.createdTime) &&
+                Objects.equals(idUser, invoice.idUser) &&
+                Objects.equals(idDiscountCode, invoice.idDiscountCode);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, customerName, customerEmail, customerPhone, customerAddress, customerMessage, total, paymentMethod, createdTime, idUser, idDiscountCode);
+    }
 
-  public String getCustomerAddress() {
-    return customerAddress;
-  }
+    @ManyToOne
+    @JoinColumn(name = "Id_User", referencedColumnName = "Id", insertable = false, updatable = false)
+    public User getUserByIdUser() {
+        return userByIdUser;
+    }
 
-  public void setCustomerAddress(String customerAddress) {
-    this.customerAddress = customerAddress;
-  }
+    public void setUserByIdUser(User userByIdUser) {
+        this.userByIdUser = userByIdUser;
+    }
 
+    @ManyToOne
+    @JoinColumn(name = "Id_Discount_Code", referencedColumnName = "Id", insertable = false, updatable = false)
+    public DiscountCode getDiscountCodeByIdDiscountCode() {
+        return discountCodeByIdDiscountCode;
+    }
 
-  public String getCustomerMessage() {
-    return customerMessage;
-  }
+    public void setDiscountCodeByIdDiscountCode(DiscountCode discountCodeByIdDiscountCode) {
+        this.discountCodeByIdDiscountCode = discountCodeByIdDiscountCode;
+    }
 
-  public void setCustomerMessage(String customerMessage) {
-    this.customerMessage = customerMessage;
-  }
+    @OneToMany(mappedBy = "invoiceByIdInvoice")
+    public Collection<InvoiceDetail> getInvoiceDetailsById() {
+        return invoiceDetailsById;
+    }
 
-
-  public String getTotal() {
-    return total;
-  }
-
-  public void setTotal(String total) {
-    this.total = total;
-  }
-
-
-  public String getPaymentMethod() {
-    return paymentMethod;
-  }
-
-  public void setPaymentMethod(String paymentMethod) {
-    this.paymentMethod = paymentMethod;
-  }
-
-
-  public java.sql.Timestamp getCreatedTime() {
-    return createdTime;
-  }
-
-  public void setCreatedTime(java.sql.Timestamp createdTime) {
-    this.createdTime = createdTime;
-  }
-
-
-  public long getIdUser() {
-    return idUser;
-  }
-
-  public void setIdUser(long idUser) {
-    this.idUser = idUser;
-  }
-
-
-  public long getIdDiscountCode() {
-    return idDiscountCode;
-  }
-
-  public void setIdDiscountCode(long idDiscountCode) {
-    this.idDiscountCode = idDiscountCode;
-  }
-
+    public void setInvoiceDetailsById(Collection<InvoiceDetail> invoiceDetailsById) {
+        this.invoiceDetailsById = invoiceDetailsById;
+    }
 }

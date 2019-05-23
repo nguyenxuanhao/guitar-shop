@@ -27,22 +27,30 @@
             <div class="result_overview">
                 <!--/*@thymesVar id="count" type=""*/-->
 <!--                <h4 th:text="Kết quả tìm kiếm " + th:text="${count}"+ th:text=" sản phẩm"></h4>-->
+                <h4 th:text="'Kết quả tìm được: '+${result.size()}+' sản phẩm'"></h4>
                 <hr />
             </div>
             <div class="result_list">
                 <div class="row">
                     <!--/*@thymesVar id="result" type=""*/-->
                     <th:block th:each="product : ${result}">
-                        <a href="#">
+                        <a th:href="@{~/chi-tiet/(name=${product.metadata},id=${product.Id})}">
                             <div class="col-lg-3 col-md-4 col-6">
                                 <div class="single-product">
                                     <img class="img-fluid" th:src="${product.imageThumbnail}" alt="">
                                     <div class="product-details s_product_text">
                                         <h6 th:text="${product.Name}">
-
                                         </h6>
                                         <div class="price">
-                                            <h6 class="l-through" th:text="${product.Price}"></h6>
+                                            <th:block th:if="${product.discountAmount}>0"
+                                                      th:with="discountPrice=${product.price}*(100-${product.discountAmount})/100">
+                                                <h6 th:text="${#numbers.formatDecimal(discountPrice,0,'POINT',0,'COMMA')+'đ'}"></h6>
+                                                <h6 class="l-through"
+                                                    th:text="${#numbers.formatDecimal(product.price,0,'POINT',0,'COMMA')+'đ'}"></h6>
+                                            </th:block>
+                                            <th:block th:unless="${product.discountAmount}>0">
+                                                <h6 th:text="${#numbers.formatDecimal(product.price,0,'POINT',0,'COMMA')+'đ'}"></h6>
+                                            </th:block>
                                         </div>
                                         <div class="prd-bottom card_area">
                                             <a class="primary-btn" href="#">Thêm vào giỏ</a>
