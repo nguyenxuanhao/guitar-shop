@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name="PRODUCT")
+@Table(name = "PRODUCT", schema = "dbo", catalog = "GUITARSHOP")
 public class Product {
     private int id;
     private String name;

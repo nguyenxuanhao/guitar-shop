@@ -101,7 +101,7 @@
             </div>
             <div class="row">
                 <th:block th:each="item:${mostDiscountProducts}">
-                    <a href="#">
+                    <a th:href="@{~/chi-tiet/(name=${item.metadata},id=${item.Id})}">
                         <div class="col-lg-3 col-md-4 col-6">
                             <div class="single-product">
                                 <img alt="" class="img-fluid" th:src="${item.imageThumbnail}">
@@ -138,21 +138,17 @@
             </div>
             <div class="row">
                 <th:block th:each="item:${newestProducts}">
-                    <a href="#">
+                    <a th:href="@{~/chi-tiet/(name=${item.metadata},id=${item.Id})}">
                         <div class="col-lg-3 col-md-4 col-6">
                             <div class="single-product">
                                 <img alt="" class="img-fluid" th:src="${item.imageThumbnail}">
                                 <div class="product-details s_product_text">
                                     <h6 th:text="${item.name}"></h6>
                                     <div class="price">
-                                        <th:block th:if="${item.discountAmount}>0"
-                                                  th:with="discountPrice=${item.price}*(100-${item.discountAmount})/100">
+                                        <th:block th:with="discountPrice=${item.price}*(100-${item.discountAmount})/100">
                                             <h6 th:text="${#numbers.formatDecimal(discountPrice,0,'POINT',0,'COMMA')+'đ'}"></h6>
-                                            <h6 class="l-through"
+                                            <h6 class="l-through" th:if="${item.discountAmount}>0"
                                                 th:text="${#numbers.formatDecimal(item.price,0,'POINT',0,'COMMA')+'đ'}"></h6>
-                                        </th:block>
-                                        <th:block th:unless="${item.discountAmount}>0">
-                                            <h6 th:text="${#numbers.formatDecimal(item.price,0,'POINT',0,'COMMA')+'đ'}"></h6>
                                         </th:block>
                                     </div>
                                     <div class="prd-bottom card_area">

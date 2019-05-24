@@ -28,23 +28,34 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="s_Product_carousel">
                         <div class="single-prd-item">
-                            <img alt="" class="img-fluid" th:src="@{/img/fav.png}">
+                            <img alt="" class="img-fluid" th:src="${product.getImageThumbnail()}">
                         </div>
-                        <div class="single-prd-item">
-                            <img alt="" class="img-fluid" th:src="@{/img/fav.png}">
-                        </div>
+                        <th:block th:each="item: ${ListImage}">
+                            <div class="single-prd-item">
+                                <img alt="" class="img-fluid" th:src="${item.getData()}" >
+                            </div>
+                        </th:block>
                     </div>
                 </div>
                 <div class="col-md-6 offset-lg-1">
                     <div class="s_product_text">
-                        <h3>Guitar 123</h3>
-                        <h2>2.700.000đ</h2>
-                        <h4 class="l-through">3.000.000đ</h4>
+                        <h3 th:text="${product.getName()}"></h3>
+                        <div class="price">
+                            <th:block th:if="${product.discountAmount}>0"
+                                      th:with="discountPrice=${product.price}*(100-${product.discountAmount})/100">
+                                <h2 th:text="${#numbers.formatDecimal(discountPrice,0,'POINT',0,'COMMA')+'đ'}"></h2>
+                                <h4 class="l-through"
+                                    th:text="${#numbers.formatDecimal(product.price,0,'POINT',0,'COMMA')+'đ'}"></h4>
+                            </th:block>
+                            <th:block th:unless="${product.discountAmount}>0">
+                                <h2 th:text="${#numbers.formatDecimal(product.price,0,'POINT',0,'COMMA')+'đ'}"></h2>
+                            </th:block>
+                        </div>
                         <ul class="list">
-                            <li><a href="#"><span>Loại đàn: </span> Classic</a></li>
-                            <li><a href="#"><span>Mã SP: </span> 123123</a></li>
-                            <li><a href="#"><span>Tình trạng: </span> Còn hàng</a></li>
-                            <li><a href="#"><span>Bảo hành: </span> 1 năm</a></li>
+                            <li th:text= "'Loại đàn: ' + ${product.getCategoryByIdCategory().getName()}"><a href="#"><span></span> </a></li>
+                            <li th:text="'Mã SP: '+ ${product.getModelNumber()}"><a href="#"><span> </span></a></li>
+                            <li th:text="'Tình trạng: '+ ${product.getStatus()}"><a href="#"><span></span> </a></li>
+                            <li th:text="'Bảo hành: '+ ${product.getWarrantyPeriod()}"><a href="#"><span></span></a></li>
                         </ul>
                         <div class="social-button-group">
                             <ul class="list">
@@ -54,7 +65,7 @@
                                 <li><a><span class="fa fa-pinterest"></span></a></li>
                             </ul>
                         </div>
-                        <p>Lorem is dfdfdf kdjfdjfdkfj dkfjdkfjdkj</p>
+                        <p th:text="${product.getDescription()}"></p>
                         <div class="product_count">
                             <label for="qty">Số lượng:</label>
                             <input class="input-text" id="qty" maxlength="12" name="qty" type="text" value="1">
@@ -100,20 +111,54 @@
                         <div class="col-lg-4">
                             <div class="box_total">
                                 <h5>Xếp hạng trung bình</h5>
-                                <h4><span id="average-rate">4,7</span>/5</h4>
-                                <h6>(<span id="total-rate-1">3</span> lượt xếp hạng)</h6>
+                                <h4><span id="average-rate" th:text="${AverageRate} +'/5'"></span></h4>
+                                <h6>(<span id="total-rate-1" th:text="${TotalRate}"></span> lượt xếp hạng)</h6>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="rating_list">
-                                <h5>Dựa trên <span id="total-rate-2">3</span> lượt xếp hạng:</h5>
+                                <h5>Dựa trên <span id="total-rate-2" th:text="${TotalRate}"></span> lượt xếp hạng:</h5>
                                 <ul class="list">
                                     <li>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star-o"></i>
-                                        &ensp; <span id="count-rate-@(listCountRate.Length - i)">1</span> lượt
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        [[${ListCountRate[0]}]]
                                     </li>
-
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        [[${ListCountRate[1]}]]
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        [[${ListCountRate[2]}]]
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        [[${ListCountRate[3]}]]
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        [[${ListCountRate[4]}]]
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -141,7 +186,7 @@
                                     <h5>Mã sản phẩm</h5>
                                 </td>
                                 <td>
-                                    <h5>123123</h5>
+                                    <h5 th:text="${product.getModelNumber()}"></h5>
                                 </td>
                             </tr>
                             <tr>
@@ -149,7 +194,7 @@
                                     <h5>Kiểu dáng</h5>
                                 </td>
                                 <td>
-                                    <h5>Dáng D</h5>
+                                    <h5 th:text="${product.getStyle()}"></h5>
                                 </td>
                             </tr>
                             <tr>
@@ -157,7 +202,7 @@
                                     <h5>Xuất xứ</h5>
                                 </td>
                                 <td>
-                                    <h5>Nhật Bản</h5>
+                                    <h5 th:text="${product.getManufacturerByIdManufacturer().getCountry()}"></h5>
                                 </td>
                             </tr>
                             <tr>
@@ -165,7 +210,7 @@
                                     <h5>Thương hiệu</h5>
                                 </td>
                                 <td>
-                                    <h5>STATION</h5>
+                                    <h5 th:text="${product.getManufacturerByIdManufacturer().getName()}"></h5>
                                 </td>
                             </tr>
                             <tr>
@@ -173,7 +218,7 @@
                                     <h5>Chất liệu thân đàn</h5>
                                 </td>
                                 <td>
-                                    <h5>Gỗ thông</h5>
+                                    <h5 th:text="${product.getMaterial()}"></h5>
                                 </td>
                             </tr>
                             <tr>
@@ -181,7 +226,7 @@
                                     <h5>Chất liệu dây đàn</h5>
                                 </td>
                                 <td>
-                                    <h5>Kim loại</h5>
+                                    <h5 th:text="${product.getStringMaterial()}"></h5>
                                 </td>
                             </tr>
                             </tbody>
@@ -203,25 +248,34 @@
                 </div>
             </div>
             <div class="row">
-                <a href="/chi-tiet">
-                    <div class="col-lg-3 col-md-4 col-6">
-                        <div class="single-product">
-                            <img alt="" class="img-fluid" th:src="@{/img/fav.png}">
-                            <div class="product-details s_product_text">
-                                <h6>
-                                    Guitar 234
-                                </h6>
-                                <div class="price">
-                                    <h6>3.000.000đ</h6>
-                                    <h6 class="l-through">3.500.000đ</h6>
-                                </div>
-                                <div class="prd-bottom card_area">
-                                    <a class="primary-btn" href="#">Thêm vào giỏ</a>
+                <th:block th:each="product:${ListRelativeProduct}">
+                    <a th:href="@{~/chi-tiet/(name=${product.metadata},id=${product.Id})}">
+                        <div class="col-lg-3 col-md-4 col-6">
+                            <div class="single-product">
+                                <img alt="" class="img-fluid" th:src="${product.getImageThumbnail()}">
+                                <div class="product-details s_product_text">
+                                    <h6 th:text="${product.getName()}">
+                                    </h6>
+                                    <div class="price">
+                                        <th:block th:if="${product.discountAmount}>0"
+                                                  th:with="discountPrice=${product.price}*(100-${product.discountAmount})/100">
+                                            <h6 th:text="${#numbers.formatDecimal(discountPrice,0,'POINT',0,'COMMA')+'đ'}"></h6>
+                                            <h6 class="l-through"
+                                                th:text="${#numbers.formatDecimal(product.price,0,'POINT',0,'COMMA')+'đ'}"></h6>
+                                        </th:block>
+                                        <th:block th:unless="${product.discountAmount}>0">
+                                            <h6 th:text="${#numbers.formatDecimal(product.price,0,'POINT',0,'COMMA')+'đ'}"></h6>
+                                        </th:block>
+                                    </div>
+                                    <div class="prd-bottom card_area">
+                                        <a class="primary-btn" href="#">Thêm vào giỏ</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </th:block>
+
             </div>
         </div>
     </section>

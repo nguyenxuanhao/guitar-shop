@@ -13,11 +13,16 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-
-    // Get All Products
     @RequestMapping(value = "/chi-tiet", method = RequestMethod.GET)
-    public String displayAllProduct() {
-        return "/product/product-detail";
+    public String productDetail(String name, Integer id, Model model) {
+        model.addAttribute("product", productService.getProductById(id));
+        productService.GetProductExtraInfo(id);
+        model.addAttribute("TotalRate",productService.getTotalRate());
+        model.addAttribute("ListCountRate",productService.getListCountRate());
+        model.addAttribute("ListRelativeProduct",productService.getListRelatedProducts());
+        model.addAttribute("AverageRate",productService.getAverageRate());
+        model.addAttribute("ListImage",productService.getProductImage());
+        return "product/product-detail";
     }
 
 
