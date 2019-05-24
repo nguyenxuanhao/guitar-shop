@@ -1,6 +1,5 @@
 package org.group02.guitarshop.controller;
 
-import org.group02.guitarshop.repository.CategoryRepository;
 import org.group02.guitarshop.service.CategoryService;
 import org.group02.guitarshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
