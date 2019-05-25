@@ -13,7 +13,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = "/chi-tiet", method = RequestMethod.GET)
+    @RequestMapping(value = "/chi-tiet/", method = RequestMethod.GET)
     public String productDetail(String name, Integer id, Model model) {
         model.addAttribute("product", productService.getProductById(id));
         productService.GetProductExtraInfo(id);
@@ -24,7 +24,6 @@ public class ProductController {
         model.addAttribute("ListImage",productService.getProductImage());
         return "product/product-detail";
     }
-
 
 //    @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
 //    public ModelAndView displayNewProductForm() {
