@@ -108,18 +108,14 @@
                                 <div class="product-details s_product_text">
                                     <h6 th:text="${item.name}"></h6>
                                     <div class="price">
-                                        <th:block th:if="${item.discountAmount}>0"
-                                                  th:with="discountPrice=${item.price}*(100-${item.discountAmount})/100">
+                                        <th:block th:with="discountPrice=${item.price}*(100-${item.discountAmount})/100">
                                             <h6 th:text="${#numbers.formatDecimal(discountPrice,0,'POINT',0,'COMMA')+'đ'}"></h6>
-                                            <h6 class="l-through"
+                                            <h6 class="l-through" th:if="${item.discountAmount}>0"
                                                 th:text="${#numbers.formatDecimal(item.price,0,'POINT',0,'COMMA')+'đ'}"></h6>
-                                        </th:block>
-                                        <th:block th:unless="${item.discountAmount}>0">
-                                            <h6 th:text="${#numbers.formatDecimal(item.price,0,'POINT',0,'COMMA')+'đ'}"></h6>
                                         </th:block>
                                     </div>
                                     <div class="prd-bottom card_area">
-                                        <a class="primary-btn" href="#">Thêm vào giỏ</a>
+                                        <a class="primary-btn" th:href="@{/add-to-cart(productId=${item.id})}">Thêm vào giỏ</a>
                                     </div>
                                 </div>
                             </div>
@@ -149,18 +145,14 @@
                                 <div class="product-details s_product_text">
                                     <h6 th:text="${item.name}"></h6>
                                     <div class="price">
-                                        <th:block th:if="${item.discountAmount}>0"
-                                                  th:with="discountPrice=${item.price}*(100-${item.discountAmount})/100">
+                                        <th:block th:with="discountPrice=${item.price}*(100-${item.discountAmount})/100">
                                             <h6 th:text="${#numbers.formatDecimal(discountPrice,0,'POINT',0,'COMMA')+'đ'}"></h6>
-                                            <h6 class="l-through"
+                                            <h6 class="l-through" th:if="${item.discountAmount}>0"
                                                 th:text="${#numbers.formatDecimal(item.price,0,'POINT',0,'COMMA')+'đ'}"></h6>
-                                        </th:block>
-                                        <th:block th:unless="${item.discountAmount}>0">
-                                            <h6 th:text="${#numbers.formatDecimal(item.price,0,'POINT',0,'COMMA')+'đ'}"></h6>
                                         </th:block>
                                     </div>
                                     <div class="prd-bottom card_area">
-                                        <a class="primary-btn" href="#">Thêm vào giỏ</a>
+                                        <a class="primary-btn" th:href="@{/add-to-cart(productId=${item.id})}">Thêm vào giỏ</a>
                                     </div>
                                 </div>
                             </div>
