@@ -108,7 +108,7 @@
                         <div class="col-lg-4">
                             <div class="box_total">
                                 <h5>Xếp hạng trung bình</h5>
-                                <h4><span id="average-rate" th:text="${AverageRate} +'/5'"></span></h4>
+                                <h4><span id="average-rate">[[${AverageRate}]]/5</span></h4>
                                 <h6>(<span id="total-rate-1" th:text="${TotalRate}"></span> lượt xếp hạng)</h6>
                             </div>
                         </div>
@@ -118,27 +118,11 @@
                                 <ul class="list">
                                     <li>
                                         <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        [[${ListCountRate[0]}]]
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        [[${ListCountRate[1]}]]
-                                    </li>
-                                    <li>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        [[${ListCountRate[2]}]]
+                                        <i class="fa fa-star"></i>
+                                        [[${ListCountRate[4]}]] lượt
                                     </li>
                                     <li>
                                         <i class="fa fa-star"></i>
@@ -146,15 +130,31 @@
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star-o"></i>
-                                        [[${ListCountRate[3]}]]
+                                        [[${ListCountRate[3]}]] lượt
                                     </li>
                                     <li>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        [[${ListCountRate[2]}]] lượt
+                                    </li>
+                                    <li>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
-                                        [[${ListCountRate[4]}]]
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        [[${ListCountRate[1]}]] lượt
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        [[${ListCountRate[0]}]] lượt
                                     </li>
                                 </ul>
                             </div>

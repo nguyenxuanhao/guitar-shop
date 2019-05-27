@@ -11,4 +11,8 @@ public class ContactController {
     public String Contact() {
         return "/contact/contact";
     }
+//    @RequestMapping(value = "/lien-he", method = RequestMethod.POST)
+//    public String Contact() {
+//        return "/contact/contact";
+//    }
 }

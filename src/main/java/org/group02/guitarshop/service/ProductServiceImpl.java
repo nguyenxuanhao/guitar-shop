@@ -109,7 +109,7 @@ public class ProductServiceImpl implements ProductService {
             for (Rate i: listRate) {
                 sum += i.getNumberOfStars();
             }
-            AverageRate = sum/TotalRate;
+            AverageRate =  Math.round((sum*1.0/TotalRate)*10.0)/10.0;
         }
         else
         {
