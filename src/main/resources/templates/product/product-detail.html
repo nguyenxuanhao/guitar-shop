@@ -41,21 +41,18 @@
                     <div class="s_product_text">
                         <h3 th:text="${product.getName()}"></h3>
                         <div class="price">
-                            <th:block th:if="${product.discountAmount}>0"
-                                      th:with="discountPrice=${product.price}*(100-${product.discountAmount})/100">
+                            <th:block th:with="discountPrice=${product.price}*(100-${product.discountAmount})/100">
                                 <h2 th:text="${#numbers.formatDecimal(discountPrice,0,'POINT',0,'COMMA')+'đ'}"></h2>
                                 <h4 class="l-through"
+                                    th:if="${product.discountAmount}>0"
                                     th:text="${#numbers.formatDecimal(product.price,0,'POINT',0,'COMMA')+'đ'}"></h4>
-                            </th:block>
-                            <th:block th:unless="${product.discountAmount}>0">
-                                <h2 th:text="${#numbers.formatDecimal(product.price,0,'POINT',0,'COMMA')+'đ'}"></h2>
                             </th:block>
                         </div>
                         <ul class="list">
-                            <li th:text= "'Loại đàn: ' + ${product.getCategoryByIdCategory().getName()}"><a href="#"><span></span> </a></li>
-                            <li th:text="'Mã SP: '+ ${product.getModelNumber()}"><a href="#"><span> </span></a></li>
-                            <li th:text="'Tình trạng: '+ ${product.getStatus()}"><a href="#"><span></span> </a></li>
-                            <li th:text="'Bảo hành: '+ ${product.getWarrantyPeriod()}"><a href="#"><span></span></a></li>
+                            <li><a><span>Loại đàn: </span>   [[${product.getCategoryByIdCategory().getName()}]]</a></li>
+                            <li><a><span>Mã SP: </span>   [[${product.getModelNumber()}]]</a></li>
+                            <li><a><span>Tình trạng: </span>   [[${product.getStatus()}]]</a></li>
+                            <li><a><span>Bảo hành: </span>   [[${product.getWarrantyPeriod()}]]</a></li>
                         </ul>
                         <div class="social-button-group">
                             <ul class="list">
@@ -68,7 +65,7 @@
                         <p th:text="${product.getDescription()}"></p>
                         <div class="product_count">
                             <label for="qty">Số lượng:</label>
-                            <input class="input-text" id="qty" maxlength="12" name="qty" type="text" value="1">
+                            <input class="input-text" id="qty" th:data-id="${product.id}" maxlength="12" name="qty" type="text" value="1">
                             <button class="increase"
                                     onclick="var result = document.getElementById('qty'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
                                     type="button">
@@ -268,7 +265,7 @@
                                         </th:block>
                                     </div>
                                     <div class="prd-bottom card_area">
-                                        <a class="primary-btn" href="#">Thêm vào giỏ</a>
+                                        <a class="primary-btn" th:href="@{/add-to-cart(productId=${product.id}, quantity=1)}">Thêm vào giỏ</a>
                                     </div>
                                 </div>
                             </div>
