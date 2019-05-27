@@ -88,7 +88,7 @@
                     </div>
                     <div class="row">
                         <th:block th:each="item : ${pageListProduct.pageList}">
-                            <a th:href="@{~/chi-tiet(name=${item.metadata},id=${item.Id})}">
+                            <a th:href="@{~/chi-tiet(name=${item.metadata}, id=${item.Id})}">
                                 <div class="col-lg-4 col-md-6 col-sm-4 col-6">
                                     <div class="single-product">
                                         <img alt="" class="img-fluid" th:src="${item.imageThumbnail}">

@@ -66,7 +66,7 @@
                         <li class="nav-item" title="Xem giỏ hàng">
                             <a href="/gio-hang" class="cart nav-link">
                                 <span class="fa fa-shopping-cart"></span>
-                                <div class="cart_item_count">0</div>
+                                <div class="cart_item_count" th:text="${session.sessionCartNum}==null?'0':${session.sessionCartNum}">0</div>
                             </a>
                         </li>
                         <li class="nav-item submenu dropdown">
@@ -139,10 +139,12 @@
 <script th:src="@{/js/rater.js}" charset="utf-8"></script>
 <script th:src="@{/js/jquery.unobtrusive-ajax.min.js}"></script>
 <script th:src="@{/js/main.js}"></script>
-<script th:src="@{/js/controllers/cart-controller.js}"></script>
+<!--<script th:src="@{/js/controllers/cart-controller.js}"></script>
 <script th:src="@{/js/controllers/contact-controller.js}"></script>
-<script th:src="@{/js/controllers/user-controller.js}"></script>
+<script th:src="@{/js/controllers/user-controller.js}"></script>-->
+
 <script async crossorigin="anonymous" defer
         src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=2107095429555840&autoLogAppEvents=1"></script>
+
 </body>
 </html>

@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name="INVOICE")
+@Table(name = "INVOICE", schema = "dbo", catalog = "GUITARSHOP")
 public class Invoice {
     private int id;
     private String customerName;
@@ -19,6 +19,7 @@ public class Invoice {
     private Date createdTime;
     private Integer idUser;
     private Integer idDiscountCode;
+    private Integer status;
     private User userByIdUser;
     private DiscountCode discountCodeByIdDiscountCode;
     private Collection<InvoiceDetail> invoiceDetailsById;
@@ -133,6 +134,16 @@ public class Invoice {
         this.idDiscountCode = idDiscountCode;
     }
 
+    @Basic
+    @Column(name = "Status", nullable = true)
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -148,12 +159,13 @@ public class Invoice {
                 Objects.equals(paymentMethod, invoice.paymentMethod) &&
                 Objects.equals(createdTime, invoice.createdTime) &&
                 Objects.equals(idUser, invoice.idUser) &&
-                Objects.equals(idDiscountCode, invoice.idDiscountCode);
+                Objects.equals(idDiscountCode, invoice.idDiscountCode) &&
+                Objects.equals(status, invoice.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, customerName, customerEmail, customerPhone, customerAddress, customerMessage, total, paymentMethod, createdTime, idUser, idDiscountCode);
+        return Objects.hash(id, customerName, customerEmail, customerPhone, customerAddress, customerMessage, total, paymentMethod, createdTime, idUser, idDiscountCode, status);
     }
 
     @ManyToOne

@@ -25,7 +25,6 @@ public class ProductController {
         return "product/product-detail";
     }
 
-
 //    @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
 //    public ModelAndView displayNewProductForm() {
 //        ModelAndView mv = new ModelAndView("addProduct");
