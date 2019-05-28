@@ -25,6 +25,7 @@ public class Invoice {
     private Collection<InvoiceDetail> invoiceDetailsById;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id", nullable = false)
     public int getId() {
         return id;

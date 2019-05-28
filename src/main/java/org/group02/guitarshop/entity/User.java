@@ -19,6 +19,7 @@ public class User {
     private Collection<Invoice> invoicesById;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id", nullable = false)
     public int getId() {
         return id;

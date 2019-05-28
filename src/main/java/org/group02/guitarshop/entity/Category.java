@@ -13,6 +13,7 @@ public class Category {
     private Collection<Product> productsById;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id", nullable = false)
     public int getId() {
         return id;

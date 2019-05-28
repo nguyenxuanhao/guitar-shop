@@ -61,36 +61,37 @@
                 </div>
                 <div class="col-lg-7 contact_message">
                     <h2>Gửi lời nhắn</h2>
-                    <div class="shipping_info">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Họ tên *</label>
-                                    <input type="text">
+                    <form id="contactForm" action="">
+                        <div class="shipping_info">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Họ tên *</label>
+                                        <input type="text" class="form-control" id="name" name="name" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Email *</label>
+                                        <input type="email" class="form-control" id="email" name="email" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Email *</label>
-                                    <input type="email">
+                            <div class="form-group">
+                                <label>Tiêu đề</label>
+                                <input type="text" class="form-control" id="title" name="title" />
+                            </div>
+                            <div class="form-group">
+                                <label>Lời nhắn *</label>
+                                <textarea type="text" rows="5" class="form-control" id="messageContent" name="messageContent"></textarea>
+                            </div>
+                            <div class="login_form send_message row justify-content-end">
+                                <div class="form-group col-md-6">
+                                    <button type="submit" class="primary-btn">Gửi</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>Tiêu đề</label>
-                            <input type="text">
-                        </div>
-                        <div class="form-group">
-                            <label>Lời nhắn *</label>
-                            <textarea type="text" rows="5"></textarea>
-                        </div>
-                        <div class="login_form send_message row justify-content-end">
-                            <div class="form-group col-md-6">
-                                <button type="submit" class="primary-btn">Gửi</button>
-                            </div>
-                        </div>
-                    </div>
-
+                    </form>
                 </div>
             </div>
         </div>
@@ -110,7 +111,7 @@
                 <a href="/" class="primary-btn">Về trang chủ</a>
             </div>
         </div>
-    </dialog>    
+    </dialog>        
 </div>
 </body>
 </html>
