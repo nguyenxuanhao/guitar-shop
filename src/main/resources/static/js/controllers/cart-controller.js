@@ -9,56 +9,52 @@
             var quantity = result.value;
             var productId = $(result).data('id');
 
-            window.location.href = "/them-gio-hang?productId=" + productId + "&quantity=" + quantity;
-        });
-
-        $('.items-count').off('click').on('click', function () {
-            var productList = $('.quantity_text');
-            var cartList = [];
-            
-            $.each(productList, function (i, item) {
-                cartList.push({
-                    Quantity: $(item).val(),
-                    Product: {
-                        Id: $(item).data('id')
-                    }
-                });
-            });
-
-            $.ajax({
-                url: '/Cart/UpdateCart',
-                data: { cartModel: JSON.stringify(cartList) },
-                dataType: 'json',
-                type: 'POST',
-                success: function (res) {
-                    if (res.status == true) {
-                        window.location.href = "/gio-hang";
-                    }
-                }
-            });
+            window.location.href = "/add-to-cart?productId=" + productId + "&quantity=" + quantity;
         });
 
         $('.delete_item').off('click').on('click', function (e) {
             e.preventDefault();
+            var productId = $(this).data('id');
+            window.location.href = "/remove-from-cart?productId=" + productId;
+        });
+
+
+        $('.items-count').off('click').on('click', function (){
+            var productId=$(this).data('productid');
+            var isIncreasing=$(this).data('isincreasing');
+            var inputQuantity=document.getElementById(productId);
+
+            var sst=inputQuantity.value;
+            if(isIncreasing===1){
+                if( !isNaN( sst )) {
+                    inputQuantity.value++;
+                }
+            }else{
+                if( !isNaN( sst )&& sst > 1 ) {
+                    inputQuantity.value--;
+                }
+            }
+
+            var quantity = inputQuantity.value;
+
             $.ajax({
-                data: { productId: $(this).data('id') },
-                url: '/Cart/DeleteItem',
+                contentType: 'application/json',
+                url: '/update-cart',
+                data: {"productId": productId, "quantity": quantity},
                 dataType: 'json',
-                type: 'POST',
-                success: function (res) {
-                    if (res.status == true) {
-                        window.location.href = "/gio-hang";
-                    }                    
+                type: 'GET',
+                success: function (data) {
+                    window.location.href="/gio-hang";
                 }
             });
         });
 
         $('#delete_discount_code').off('click').on('click', function (e) {
             e.preventDefault();
-            window.location.href = "/Cart/DeleteDiscountCode";
-        });       
+            window.location.href = "/remove-discount-code";
+        });
     }
-}
+};
 cart.init();
 
 var dialog = document.querySelector('dialog');

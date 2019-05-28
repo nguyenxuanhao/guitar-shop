@@ -17,6 +17,11 @@ import javax.persistence.criteria.CriteriaBuilder;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+    @PersistenceContext
+    EntityManager entityManager;
+
+    @Autowired
+    private ProductRepository repository;
 
     public List<ProductImage> ListImage;
     public List<Product> ListRelatedProducts;
@@ -46,12 +51,6 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductImage> getProductImage() {
         return ListImage;
     }
-
-    @PersistenceContext
-    EntityManager entityManager;
-
-    @Autowired
-    private ProductRepository repository;
 
     @Override
     public Product getProductById(Integer id) {

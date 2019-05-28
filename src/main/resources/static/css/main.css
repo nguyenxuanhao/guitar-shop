@@ -6143,6 +6143,7 @@ label {
 
     .cart_inner .table tbody tr td .media .delete_item {
         color: #ff6c00;
+        cursor:pointer;
     }
 
         .cart_inner .table tbody tr td .media .delete_item:hover {

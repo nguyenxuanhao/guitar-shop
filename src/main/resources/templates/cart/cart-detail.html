@@ -24,7 +24,7 @@
     <!--================Cart Area =================-->
     <section class="cart_area">
         <div class="container">
-            <div class="cart_inner">
+            <div class="cart_inner" id="cart_content">
                 <th:block th:if="${session.sessionCart}!=null">
                     <div class="table-responsive">
                         <table class="table">
@@ -39,53 +39,38 @@
                             <tbody>
                             <th:block th:each="item:${session.sessionCart}">
                                 <tr th:with="product=${item.getValue().getProduct()}, quantity=${item.getValue().getQuantity()}">
-                                    <th:block th:with="discountPrice=${product.getPrice()}*(100-${product.getDiscountAmount()})/100">
+                                    <th:block th:with="discountPrice=${product.price}*(100-${product.discountAmount})/100">
                                         <td>
                                             <div class="media">
-                                                <img alt="" class="img-fluid" th:src="${product.getImageThumbnail()}">
+                                                <img alt="" class="img-fluid" th:src="${product.imageThumbnail}">
                                                 <div class="media-body">
-                                                    <a href="#">
-                                                        <h5 th:text="${product.getName()}"></h5>
+                                                    <a th:href="@{~/chi-tiet/(name=${product.metadata},id=${product.Id})}">
+                                                        <h5 th:text="${product.name}"></h5>
                                                     </a>
-                                                    <a class="delete_item" th:href="@{/remove-from-cart(productId=${product.getId()})}">Xoá</a>
+                                                    <a class="delete_item" th:data-id="${product.id}">Xoá</a>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <h5 th:text="${#numbers.formatDecimal(discountPrice,0,'POINT',0,'COMMA')+'đ'}"></h5>
-                                            <th:block  th:if="${product.getDiscountAmount()}>0">
+                                            <th:block  th:if="${product.discountAmount}>0">
                                             <span class="l-through"
-                                                  th:text="${#numbers.formatDecimal(product.getPrice(),0,'POINT',0,'COMMA')+'đ'}"></span>
-                                                <span> | -[[${product.getDiscountAmount()}]]%</span>
+                                                  th:text="${#numbers.formatDecimal(product.price,0,'POINT',0,'COMMA')+'đ'}"></span>
+                                                <span> | -[[${product.discountAmount}]]%</span>
                                             </th:block>
                                         </td>
                                         <td>
                                             <div class="product_count">
-                                                <input type="text" name="qty" th:data-id="${product.getId()}" th:id="${product.getId()}" maxlength="12" th:value="${quantity}"
+                                                <input type="text" name="qty" th:id="${product.id}" maxlength="12" th:value="${quantity}"
                                                        class="input-text quantity_text">
-                                                <button th:attr="onclick=|changeQuantity(${product.getId()},true)|"
+                                                <button th:data-productid="${product.id}" th:data-isincreasing="1"
                                                         class="increase items-count" type="button">
                                                     <i class="lnr lnr-chevron-up"></i>
                                                 </button>
-                                                <button th:attr="onclick=|changeQuantity(${product.getId()},false)|"
+                                                <button th:data-productid="${product.id}" th:data-isincreasing="2"
                                                         class="reduced items-count" type="button">
                                                     <i class="lnr lnr-chevron-down"></i>
                                                 </button>
-                                                <script>
-                                                    function changeQuantity(id, isIncreasing){
-                                                        var result=document.getElementById(id.toString());
-                                                        var sst=result.value;
-                                                        if(isIncreasing==true){
-                                                            if( !isNaN( sst )) {
-                                                                result.value++;
-                                                            }
-                                                        }else{
-                                                            if( !isNaN( sst )&& sst > 1 ) {
-                                                                result.value--;
-                                                            }
-                                                        }
-                                                    }
-                                                </script>
                                             </div>
                                         </td>
                                         <td>
@@ -103,24 +88,36 @@
                     <div class="bottom_button row justify-content-end">
                         <h5>Tạm tính: [[${#numbers.formatDecimal(session.sessionCartTotal,0,'POINT',0,'COMMA')+'đ'}]]</h5>
                     </div>
-                    <div class="bottom_button row justify-content-end">
-                        <h5>Giảm giá: -300.000đ</h5>
-                    </div>
+                    <th:block th:if="${session.sessionDiscountCode!=null}">
+                        <div class="bottom_button row justify-content-end">
+                            <h5>Giảm giá: -[[${#numbers.formatDecimal(session.sessionCartTotal*session.sessionDiscountCode.discountAmount/100,0,'POINT',0,'COMMA')+'đ'}]]</h5>
+                        </div>
+                    </th:block>
                     <div class="bottom_button row justify-content-end">
                         <div class="cupon_text d-flex align-items-center">
-                            <input id="discount_text" placeholder="Mã giảm giá" type="text">
-                            <button class="gray_btn" id="apply_code" type="submit">Áp dụng</button>
+                            <form action="#" th:action="@{/apply-discount-code}" th:object="${discountCode}" method="post">
+                                <input id="discount_text" placeholder="Mã giảm giá" type="text" th:field="*{code}">
+                                <button class="gray_btn" id="apply_code" type="submit">Áp dụng</button>
+                            </form>
                         </div>
                     </div>
-                    <div class="bottom_button row justify-content-end align-items-center">
-                        <div class="applied_code">
-                            <span class="applied_code">QTTN19</span>
-                            <a href="#" id="delete_discount_code" title="Xoá mã giảm giá"><i class="ti-close"></i></a>
+                    <th:block th:if="${session.sessionDiscountCode!=null}">
+                        <div class="bottom_button row justify-content-end align-items-center">
+                            <div class="applied_code">
+                                <span class="applied_code">[[${session.sessionDiscountCode.code}]]</span>
+                                <a href="#" id="delete_discount_code" title="Xoá mã giảm giá"><i class="ti-close"></i></a>
+                            </div>
                         </div>
-                    </div>
+                    </th:block>
+
                     <div class="total_price row justify-content-end align-items-center">
                         <h5>Tổng cộng: </h5>
-                        <h2 id="total_number">2.500.000đ</h2>
+                        <th:block th:if="${session.sessionDiscountCode!=null}">
+                            <h2 id="total_number">[[${#numbers.formatDecimal(session.sessionCartTotal*(100-session.sessionDiscountCode.discountAmount)/100,0,'POINT',0,'COMMA')+'đ'}]]</h2>
+                        </th:block>
+                        <th:block th:if="${session.sessionDiscountCode==null}">
+                            <h2 id="total_number">[[${#numbers.formatDecimal(session.sessionCartTotal,0,'POINT',0,'COMMA')+'đ'}]]</h2>
+                        </th:block>
                     </div>
                     <div class="out_button_area row justify-content-end">
                         <div class="checkout_btn_inner d-flex align-items-center">
@@ -128,6 +125,7 @@
                             <a class="primary-btn" href="#">Thanh toán</a>
                         </div>
                     </div>
+                    <div id="test-key"></div>
                 </th:block>
                 <th:block th:if="${session.sessionCart}==null">
                     <div class="justify-content-center">
@@ -140,5 +138,7 @@
     </section>
     <!--================End Cart Area =================-->
 </div>
+
+
 </body>
 </html>
