@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "RATE", schema = "dbo", catalog = "GUITARSHOP")
 public class Rate {
     private int id;
     private Double numberOfStars;
@@ -12,7 +11,6 @@ public class Rate {
     private Product productByIdProduct;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id", nullable = false)
     public int getId() {
         return id;

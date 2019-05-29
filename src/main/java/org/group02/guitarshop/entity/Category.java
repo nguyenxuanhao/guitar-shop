@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "CATEGORY", schema = "dbo", catalog = "GUITARSHOP")
 public class Category {
     private int id;
     private String name;
@@ -13,7 +12,6 @@ public class Category {
     private Collection<Product> productsById;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id", nullable = false)
     public int getId() {
         return id;

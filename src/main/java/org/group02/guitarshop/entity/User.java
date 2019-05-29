@@ -1,26 +1,35 @@
 package org.group02.guitarshop.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "USER", schema = "dbo", catalog = "GUITARSHOP")
+@Access(AccessType.FIELD)
 public class User {
+
+    @Id
+    @Column(name = "Id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
     private String email;
     private String password;
     private String address;
     private String phone;
     private String avatar;
-    private Date participationTime;
+    private Timestamp participationTime;
+
+    @OneToMany(mappedBy = "userByIdUser")
     private Collection<Invoice> invoicesById;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id", nullable = false)
+    @OneToMany(mappedBy = "userByUserId")
+    private Collection<UserRole> userRolesById;
+
     public int getId() {
         return id;
     }
@@ -91,11 +100,11 @@ public class User {
 
     @Basic
     @Column(name = "Participation_Time", nullable = true)
-    public Date getParticipationTime() {
+    public Timestamp getParticipationTime() {
         return participationTime;
     }
 
-    public void setParticipationTime(Date participationTime) {
+    public void setParticipationTime(Timestamp participationTime) {
         this.participationTime = participationTime;
     }
 
@@ -119,7 +128,6 @@ public class User {
         return Objects.hash(id, name, email, password, address, phone, avatar, participationTime);
     }
 
-    @OneToMany(mappedBy = "userByIdUser")
     public Collection<Invoice> getInvoicesById() {
         return invoicesById;
     }
@@ -127,4 +135,25 @@ public class User {
     public void setInvoicesById(Collection<Invoice> invoicesById) {
         this.invoicesById = invoicesById;
     }
+
+    public Collection<UserRole> getUserRolesById() {
+        return userRolesById;
+    }
+
+    public void setUserRolesById(Collection<UserRole> userRolesById) {
+        this.userRolesById = userRolesById;
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "Id"), inverseJoinColumns = @JoinColumn(name = "Role_Id"))
+    private Set<Role> roles;
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
 }

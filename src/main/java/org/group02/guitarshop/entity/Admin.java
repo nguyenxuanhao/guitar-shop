@@ -1,10 +1,12 @@
 package org.group02.guitarshop.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-@Table(name = "ADMIN", schema = "dbo", catalog = "GUITARSHOP")
 public class Admin {
     private int id;
     private String name;
@@ -13,7 +15,6 @@ public class Admin {
     private String avatar;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
