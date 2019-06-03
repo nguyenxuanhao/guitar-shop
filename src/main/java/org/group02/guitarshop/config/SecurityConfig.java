@@ -48,15 +48,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/dang-nhap").permitAll()
-                .antMatchers("/dang-ki").permitAll()
+                .antMatchers("/dang-ky").permitAll()
                 .antMatchers("/admin/**").hasAuthority("user").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
-                .loginPage("/dang-nhap").failureUrl("/login?error=true")
+                .loginPage("/dang-nhap").failureUrl("/loi")
                 .defaultSuccessUrl("/")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("/dang-xuat"))
                 .logoutSuccessUrl("/").and().exceptionHandling()
                 .accessDeniedPage("/access-denied");
         http.formLogin().defaultSuccessUrl("/");

@@ -17,7 +17,7 @@ public class PersonController {
     @Autowired
     private PersonServiceImpl personService;
 
-    @RequestMapping(value="/dang-ki", method = RequestMethod.GET)
+    @RequestMapping(value="/dang-ky", method = RequestMethod.GET)
     public ModelAndView registration(){
         ModelAndView modelAndView = new ModelAndView();
         Person person = new Person();
@@ -26,20 +26,20 @@ public class PersonController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/dang-ki", method = RequestMethod.POST)
+    @RequestMapping(value = "/dang-ky", method = RequestMethod.POST)
     public ModelAndView createNewPerson(@Valid Person person, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         Person personExists = personService.findPersonByEmail(person.getEmail());
         if (personExists != null) {
             bindingResult
                     .rejectValue("email", "error.person",
-                            "There is already a user registered with the email provided");
+                            "Địa chỉ email đã có người đăng ký! Vui lòng thử lại.");
         }
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("registration");
         } else {
             personService.savePerson(person);
-            modelAndView.addObject("successMessage", "Person has been registered successfully");
+            modelAndView.addObject("successMessage", "Đăng ký thành công!");
             modelAndView.addObject("person", new Person());
             modelAndView.setViewName("/user/login");
         }
