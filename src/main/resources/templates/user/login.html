@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="login_form_inner">
+                    <form th:action="@{/dang-nhap}" method="POST" class="login_form_inner">
                         <h3>Đăng nhập</h3>
                         <div class="row login_form">
                             <div class="col-md-12 form-group">
@@ -54,7 +54,7 @@
                                 <span class="">Chưa có tài khoản? <a th:action="@{/registration}" method="get">Đăng kí ngay</a></span>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -31,23 +31,36 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="login_form_inner">
+                    <form autocomplete="off" action="#" th:action="@{/dang-ki}"
+                          th:object="${person}" method="post" class="login_form_inner"
+                          role="form">
                         <h3>Đăng kí</h3>
                         <div class="row login_form">
                             <div class="col-md-12 form-group">
-                                <input class="form-control" placeholder="Email" type="email">
+                                <input type="email" th:field="*{email}" placeholder="Email"
+                                       class="form-control" />
+                                <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                    class="validation-message"></label>
                             </div>
                             <div class="col-md-12 form-group">
-                                <input class="form-control" placeholder="Mật khẩu" type="password">
+                                <input type="password" th:field="*{password}"
+                                       placeholder="Mật mã" class="form-control" />
+                                <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                    class="validation-message"></label>
                             </div>
                             <div class="col-md-12 form-group">
-                                <input class="form-control" placeholder="Họ tên" type="text">
+                                <input type="text" th:field="*{name}" placeholder="Họ và tên"
+                                       class="form-control" />
+                                <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                                       class="validation-message"></label>
                             </div>
                             <div class="col-md-12 form-group">
-                                <input class="form-control" placeholder="Số điện thoại" type="text">
+                                <input type="text" th:field="*{phone}" placeholder="Số điện thoại"
+                                       class="form-control" />
                             </div>
                             <div class="col-md-12 form-group">
-                                <input class="form-control" placeholder="Địa chỉ" type="text">
+                                <input type="text" th:field="*{address}" placeholder="Địa chỉ"
+                                       class="form-control" />
                             </div>
                             <div class="col-md-12 form-group">
                                 <button type="submit" class="primary-btn" id="btnRegister">Đăng kí</button>
@@ -57,7 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
                 <dialog class="success_dialog">

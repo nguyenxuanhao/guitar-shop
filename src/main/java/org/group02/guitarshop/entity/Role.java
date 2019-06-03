@@ -1,55 +1,20 @@
 package org.group02.guitarshop.entity;
 
-import javax.persistence.*;
-import java.util.Collection;
-import java.util.Objects;
+import lombok.Data;
 
+import javax.persistence.*;
+
+@Data
 @Entity
+@Table(name = "ROLE")
 public class Role {
-    private int roleId;
-    private String roleName;
-    private Collection<UserRole> userRolesByRoleId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Role_Id", nullable = false)
-    public int getRoleId() {
-        return roleId;
-    }
+    private int roleId;
 
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
-    }
-
-    @Basic
     @Column(name = "Role_Name", nullable = false, length = 50)
-    public String getRoleName() {
-        return roleName;
-    }
+    private String roleName;
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Role role = (Role) o;
-        return roleId == role.roleId &&
-                Objects.equals(roleName, role.roleName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(roleId, roleName);
-    }
-
-    @OneToMany(mappedBy = "roleByRoleId")
-    public Collection<UserRole> getUserRolesByRoleId() {
-        return userRolesByRoleId;
-    }
-
-    public void setUserRolesByRoleId(Collection<UserRole> userRolesByRoleId) {
-        this.userRolesByRoleId = userRolesByRoleId;
-    }
 }
