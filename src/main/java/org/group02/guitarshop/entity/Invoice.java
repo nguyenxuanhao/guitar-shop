@@ -15,7 +15,7 @@ public class Invoice {
     @Column(name = "Id", nullable = false)
     private int id;
 
-    @Column(name = "Customer_Name", nullable = true, length = 255)
+    @Column(name = "Customer_Name", nullable = true, columnDefinition="nvarchar(255)")
     private String customerName;
 
     @Column(name = "Customer_Email", nullable = true, length = 255)
@@ -24,16 +24,16 @@ public class Invoice {
     @Column(name = "Customer_Phone", nullable = true, length = 20)
     private String customerPhone;
 
-    @Column(name = "Customer_Address", nullable = true, length = 1255)
+    @Column(name = "Customer_Address", nullable = true, columnDefinition="nvarchar(1255)")
     private String customerAddress;
 
-    @Column(name = "Customer_Message", nullable = true, length = 1255)
+    @Column(name = "Customer_Message", nullable = true, columnDefinition="nvarchar(1255)")
     private String customerMessage;
 
     @Column(name = "Total", nullable = true)
     private Double total;
 
-    @Column(name = "Payment_Method", nullable = true, length = 255)
+    @Column(name = "Payment_Method", nullable = true, columnDefinition="nvarchar(255)")
     private String paymentMethod;
 
     @Column(name = "Created_Time", nullable = true)

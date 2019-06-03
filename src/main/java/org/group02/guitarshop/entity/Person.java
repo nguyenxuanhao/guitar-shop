@@ -20,7 +20,7 @@ public class Person {
     @Column(name = "Person_Id", nullable = false)
     private int Person_Id;
 
-    @Column(name = "Name", nullable = true, length = 255, columnDefinition="nvarchar(255)")
+    @Column(name = "Name", nullable = true, columnDefinition="nvarchar(255)")
     @NotEmpty(message = "*Vui lòng nhập tên")
     private String name;
 
@@ -34,7 +34,7 @@ public class Person {
     @NotEmpty(message = "*Vui lòng nhập mật mã")
     private String password;
 
-    @Column(name = "Address", nullable = true, length = 255)
+    @Column(name = "Address", nullable = true, columnDefinition="nvarchar(1255)")
     private String address;
 
     @Column(name = "Phone", nullable = true, length = 20)

@@ -16,7 +16,7 @@ public class Product {
     @Column(name = "Id", nullable = false)
     private int id;
 
-    @Column(name = "Name", nullable = true, length = 255)
+    @Column(name = "Name", nullable = true, columnDefinition="nvarchar(255)")
     private String name;
 
     @Column(name = "Price", nullable = true)
@@ -31,25 +31,25 @@ public class Product {
     @Column(name = "Image_Thumbnail", nullable = true)
     private String imageThumbnail;
 
-    @Column(name = "Status", nullable = true, length = 255)
+    @Column(name = "Status", nullable = true, columnDefinition="nvarchar(255)")
     private String status;
 
     @Column(name = "Model_Number", nullable = true, length = 255)
     private String modelNumber;
 
-    @Column(name = "Description", nullable = true, length = 1255)
+    @Column(name = "Description", nullable = true, columnDefinition="nvarchar(1255)")
     private String description;
 
-    @Column(name = "Style", nullable = true, length = 255)
+    @Column(name = "Style", nullable = true, columnDefinition="nvarchar(255)")
     private String style;
 
-    @Column(name = "Material", nullable = true, length = 255)
+    @Column(name = "Material", nullable = true, columnDefinition="nvarchar(255)")
     private String material;
 
-    @Column(name = "Warranty_Period", nullable = true, length = 255)
+    @Column(name = "Warranty_Period", nullable = true, columnDefinition="nvarchar(255)")
     private String warrantyPeriod;
 
-    @Column(name = "String_Material", nullable = true, length = 255)
+    @Column(name = "String_Material", nullable = true, columnDefinition="nvarchar(255)")
     private String stringMaterial;
 
     @Column(name = "Created_Time", nullable = true)
@@ -61,7 +61,7 @@ public class Product {
     @Column(name = "Id_Manufacturer", nullable = true)
     private Integer idManufacturer;
 
-    @Column(name = "Metadata", nullable = true, length = 255)
+    @Column(name = "Metadata", nullable = true, columnDefinition="nvarchar(255)")
     private String metadata;
 
     @OneToMany(mappedBy = "productByIdProduct")

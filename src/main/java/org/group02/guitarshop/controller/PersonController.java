@@ -41,8 +41,7 @@ public class PersonController {
             personService.savePerson(person);
             modelAndView.addObject("successMessage", "Person has been registered successfully");
             modelAndView.addObject("person", new Person());
-            modelAndView.setViewName("/user/register");
-
+            modelAndView.setViewName("/user/login");
         }
         return modelAndView;
     }

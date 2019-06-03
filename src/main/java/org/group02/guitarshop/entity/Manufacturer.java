@@ -15,10 +15,10 @@ public class Manufacturer {
     @Column(name = "Id", nullable = false)
     private int id;
 
-    @Column(name = "Name", nullable = true, length = 255)
+    @Column(name = "Name", nullable = true, columnDefinition="nvarchar(255)")
     private String name;
 
-    @Column(name = "Country", nullable = true, length = 255)
+    @Column(name = "Country", nullable = true, columnDefinition="nvarchar(255)")
     private String country;
 
     @OneToMany(mappedBy = "manufacturerByIdManufacturer")

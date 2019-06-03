@@ -14,16 +14,16 @@ public class Message {
     @Column(name = "Id", nullable = false)
     private int id;
 
-    @Column(name = "Name", nullable = true, length = 50)
+    @Column(name = "Name", nullable = true, columnDefinition="nvarchar(255)")
     private String name;
 
     @Column(name = "Email", nullable = true, length = 50)
     private String email;
 
-    @Column(name = "Title", nullable = true, length = 255)
+    @Column(name = "Title", nullable = true, columnDefinition="nvarchar(255)")
     private String title;
 
-    @Column(name = "Message_Content", nullable = true, length = 1000)
+    @Column(name = "Message_Content", nullable = true, columnDefinition="nvarchar(1000)")
     private String messageContent;
 
 }

@@ -14,10 +14,10 @@ public class Category {
     @Column(name = "Id", nullable = false)
     private int id;
 
-    @Column(name = "Name", nullable = true, length = 255)
+    @Column(name = "Name", nullable = true, columnDefinition="nvarchar(255)")
     private String name;
 
-    @Column(name = "Metadata", nullable = true, length = 50)
+    @Column(name = "Metadata", nullable = true, columnDefinition="nvarchar(50)")
     private String metadata;
 
     @OneToMany(mappedBy = "categoryByIdCategory")
