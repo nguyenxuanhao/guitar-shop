@@ -3,7 +3,8 @@
       xmlns:th="http://www.thymeleaf.org"
       th:replace="~{/shared/_layout :: main-fragment(
                                                 ~{::title},
-                                                ~{:: #main-content}
+                                                ~{:: #main-content},
+                                                ${PersonalInformation}
                                                )}"> 
 <head>
         <title>Đăng ký - Guitar Shop</title>

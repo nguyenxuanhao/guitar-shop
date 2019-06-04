@@ -2,7 +2,7 @@
 <html class="no-js"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      th:fragment="main-fragment (title, mainContent)">
+      th:fragment="main-fragment (title, mainContent, PersonalInformation)">
 <head>
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -75,7 +75,7 @@
                                aria-haspopup="true"
                                aria-expanded="false"><span class="fa fa-user"></span></a>
                             <ul sec:authorize="isAuthenticated()">
-                                <li class="nav-item user_name" th:text="${#authentication.name}"><h6></h6></li>
+                                <li class="nav-item user_name"><h6 th:text="${PersonalInformation.getName()}"></h6></li>
                                 <li class="nav-item"><a class="nav-link" th:href="@{/dang-xuat}">Đăng xuất</a></li>
                             </ul>
                             <ul sec:authorize="isAnonymous()">
@@ -127,7 +127,6 @@
             </div>
         </div>
     </div>
-
 </footer>
 <!-- End footer Area -->
 

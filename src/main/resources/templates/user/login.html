@@ -2,7 +2,8 @@
 <html class="no-js"
       th:replace="~{/shared/_layout :: main-fragment(
                                                 ~{::title},
-                                                ~{:: #main-content}
+                                                ~{:: #main-content},
+                                                ${session.PersonalInformation}
                                                )}"
       xmlns:th="http://www.thymeleaf.org"> 
 <head>
