@@ -3,7 +3,7 @@
       th:replace="~{/shared/_layout :: main-fragment(
                                                 ~{::title},
                                                 ~{:: #main-content},
-                                                ${PersonalInformation}
+                                                ${session.PersonalInformation}
                                                )}"
       xmlns:th="http://www.thymeleaf.org"> 
 <head>

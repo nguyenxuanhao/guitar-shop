@@ -3,12 +3,12 @@ package org.group02.guitarshop.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Entity
 @Table(name = "INVOICE_DETAIL")
-@IdClass(InvoiceDetailPK.class)
-public class InvoiceDetail {
+public class InvoiceDetail implements Serializable {
     @Id
     @Column(name = "Id_Invoice", nullable = false)
     private int idInvoice;

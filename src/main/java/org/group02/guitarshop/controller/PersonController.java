@@ -34,7 +34,7 @@ public class PersonController {
                             "Địa chỉ email đã có người đăng ký! Vui lòng thử lại.");
         }
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("registration");
+            modelAndView.setViewName("/user/register");
         } else {
             personService.savePerson(person);
             modelAndView.addObject("successMessage", "Đăng ký thành công!");

@@ -10,10 +10,11 @@ import javax.persistence.*;
 public class ProductImage {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id", nullable = false)
     private int id;
 
+    @Lob
     @Column(name = "Data", nullable = true)
     private String data;
 

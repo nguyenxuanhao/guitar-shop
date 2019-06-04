@@ -16,7 +16,7 @@ import java.util.Set;
 public class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Person_Id", nullable = false)
     private int Person_Id;
 
@@ -40,6 +40,7 @@ public class Person {
     @Column(name = "Phone", nullable = true, length = 20)
     private String phone;
 
+    @Lob
     @Column(name = "Avatar", nullable = true)
     private String avatar;
 

@@ -12,6 +12,7 @@ import java.util.Collection;
 public class Invoice {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id", nullable = false)
     private int id;
 

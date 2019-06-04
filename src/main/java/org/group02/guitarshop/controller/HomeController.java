@@ -6,6 +6,7 @@ import org.group02.guitarshop.repository.PersonRepository;
 import org.group02.guitarshop.service.CategoryService;
 import org.group02.guitarshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
-@SessionAttributes("PersonalInfomation")
 public class HomeController {
     @Autowired
     private ProductService productService;
@@ -27,7 +29,7 @@ public class HomeController {
     PersonRepository personRepository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home(Model model) {
+    public String home(Model model, HttpServletRequest request) {
         model.addAttribute("mostDiscountProducts", productService.getMostDiscountProducts());
         model.addAttribute("newestProducts", productService.getNewestProducts());
         model.addAttribute("categoryList",categoryService.getAllCategories());
@@ -40,7 +42,8 @@ public class HomeController {
             personalInformation =
                     new PersonalInfomation(person.getName(), person.getPhone(), person.getEmail(), person.getAddress());
         }
-        model.addAttribute("PersonalInformation", personalInformation);
+//        model.addAttribute("PersonalInformation", personalInformation);
+        request.getSession().setAttribute("PersonalInformation", personalInformation);
 
         return "/home/index";
     }

@@ -12,7 +12,7 @@ import java.util.Collection;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id", nullable = false)
     private int id;
 
@@ -28,6 +28,7 @@ public class Product {
     @Column(name = "Average_Rate", nullable = true, precision = 0)
     private Double averageRate;
 
+    @Lob
     @Column(name = "Image_Thumbnail", nullable = true)
     private String imageThumbnail;
 
