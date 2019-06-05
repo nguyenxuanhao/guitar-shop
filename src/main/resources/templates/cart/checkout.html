@@ -97,7 +97,7 @@
                         <th:block th:each="item : ${session.sessionCart}">
                             <div class="cart_detail_item row" th:with="product=${item.getValue().getProduct()}, quantity=${item.getValue().getQuantity()}">
                                 <div class="col-lg-7 col-6 item_name">
-                                    <h6><a th:href="@{'/chi-tiet/' + ${product.getMetadata()} + '-' + ${product.getId()}}" th:text="${product.getName() + '(' + quantity + ')'}"></a></h6>
+                                    <h6><a th:href="@{'/chi-tiet/' + ${product.getMetadata()} + '-' + ${product.getId()}}" th:text="${product.getName() + ' (' + quantity + ')'}"></a></h6>
                                 </div>
                                 <div class="col-lg-5 col-6 item_price">
                                     <h6 th:text="(${product.getDiscountAmount()} > 0) ?
@@ -121,14 +121,6 @@
                             </div>
                             <div class="col-lg-5 col-6 item_price">
                                 <h6>Miễn phí</h6>
-                            </div>
-                        </div>
-                        <div class="total_info row">
-                            <div class="col-lg-7 col-6 item_name">
-                                <h6>Giảm giá:</h6>
-                            </div>
-                            <div class="col-lg-5 col-6 item_price">
-                                <h6>-300.000đ</h6>
                             </div>
                         </div>
                         <div class="total_info row">
