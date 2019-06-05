@@ -46,9 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.
                 authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/dang-nhap").permitAll()
-                .antMatchers("/dang-ky").permitAll()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/admin/**").hasAuthority("user").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/dang-nhap")
