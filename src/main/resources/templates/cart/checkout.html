@@ -29,7 +29,10 @@
                 <div class="checkout_section">
                     <div class="title_head">
                         <h3>Thông tin giao hàng</h3>
-                        <p>Đã có tài khoản? <a th:href="@{/dang-nhap}">Đăng nhập</a></p>
+                        <div th:if="${PersonalInformation.getEmail() == ''}">
+                            <p>Đã có tài khoản? <a th:href="@{/dang-nhap}">Đăng nhập</a></p>
+                        </div>
+
                     </div>
                     <div class="shipping_info">
                         <div class="form-group">

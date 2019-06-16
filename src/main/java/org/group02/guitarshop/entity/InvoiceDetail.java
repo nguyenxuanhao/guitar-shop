@@ -9,23 +9,26 @@ import java.io.Serializable;
 @Entity
 @Table(name = "INVOICE_DETAIL")
 public class InvoiceDetail implements Serializable {
-    @Id
-    @Column(name = "Id_Invoice", nullable = false)
-    private int idInvoice;
-
-    @Id
-    @Column(name = "Id_Product", nullable = false)
-    private int idProduct;
+    @EmbeddedId
+    private InvoiceDetailIdentity invoiceDetailIdentity;
 
     @Column(name = "Quantity", nullable = true)
     private Integer quantity;
 
+    public InvoiceDetail() { }
+
+    public InvoiceDetail(InvoiceDetailIdentity invoiceDetailIdentity, Integer quantity) {
+        this.invoiceDetailIdentity = invoiceDetailIdentity;
+        this.quantity = quantity;
+    }
+
+    @MapsId("idInvoice")
     @ManyToOne
     @JoinColumn(name = "Id_Invoice", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
     private Invoice invoiceByIdInvoice;
 
+    @MapsId("idProduct")
     @ManyToOne
     @JoinColumn(name = "Id_Product", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
     private Product productByIdProduct;
-
 }
