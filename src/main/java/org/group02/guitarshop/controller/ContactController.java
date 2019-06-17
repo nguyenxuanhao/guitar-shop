@@ -4,10 +4,8 @@ import org.group02.guitarshop.entity.Message;
 import org.group02.guitarshop.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ContactController {
@@ -16,9 +14,7 @@ public class ContactController {
     ContactService contactService;
 
     @RequestMapping(value = "/lien-he", method = RequestMethod.GET)
-    public String Contact() {
-        return "/contact/contact";
-    }
+    public String Contact() { return "/contact/contact"; }
 
     @RequestMapping(value = "/lien-he", method = RequestMethod.POST)
     @ResponseBody
