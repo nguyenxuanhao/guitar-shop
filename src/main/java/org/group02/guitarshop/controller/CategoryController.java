@@ -35,7 +35,7 @@ public class CategoryController {
         model.addAttribute("manufacturerList", categoryService.getListOfManufacturerNames(category.getId()));
 
         PagedListHolder<?> pageListProduct = new PagedListHolder<>(categoryService.getListProduct(category.getId(), manufacturer, style, minPrice, maxPrice));
-        pageListProduct.setPageSize(6);
+        pageListProduct.setPageSize(9);
         final int goToPage = pageNumber - 1;
         if (goToPage <= pageListProduct.getPageCount() && goToPage >= 0) {
             pageListProduct.setPage(goToPage);

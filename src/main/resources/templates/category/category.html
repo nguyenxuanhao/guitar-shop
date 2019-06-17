@@ -76,17 +76,6 @@
                 </th:block>
 
                 <th:block th:unless="${#lists.isEmpty(pageListProduct.pageList)}">
-                    <div class="filter-bar d-flex flex-wrap align-items-center justify-content-end">
-                        <ul class="pagination">
-                            <th:block th:each="item : ${#numbers.sequence(beginPage, endPage)}">
-                                <li th:class="${item == currentPage ? 'page-item active' : 'page-item'}">
-                                    <a class="page-link" th:href="@{'~/san-pham/' + ${mMetadata}(manufacturer=${mManufacturer}, style=${mStyle}, minPrice=${mMinPrice}, maxPrice=${mMaxPrice}, page=${item})}">
-                                        <span th:text='${item}'></span>
-                                    </a>
-                                </li>
-                            </th:block>
-                        </ul>
-                    </div>
                     <div class="row">
                         <th:block th:each="item : ${pageListProduct.pageList}">
                             <a th:href="@{~/chi-tiet(name=${item.metadata}, id=${item.Id})}">
@@ -118,7 +107,7 @@
                     <div class="filter-bar d-flex flex-wrap align-items-center justify-content-end">
                         <ul class="pagination">
                             <th:block th:each="item : ${#numbers.sequence(beginPage, endPage)}">
-                                <li th:class="${item == currentPage ? 'page-item active' : 'page-item'}">
+                                <li th:class="${item == currentPage ? 'active' : ''}">
                                     <a class="page-link" th:href="@{'~/san-pham/' + ${mMetadata}(manufacturer=${mManufacturer}, style=${mStyle}, minPrice=${mMinPrice}, maxPrice=${mMaxPrice}, page=${item})}">
                                         <span th:text='${item}'></span>
                                     </a>

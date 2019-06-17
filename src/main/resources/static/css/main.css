@@ -4621,7 +4621,8 @@ label {
 
 .pagination a {
     width: 40px;
-    line-height: 40px;
+    line-height: 25px;
+    border:none;
     text-align: center;
     display: inline-block;
     background-color: #fafafa;
