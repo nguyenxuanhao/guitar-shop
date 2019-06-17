@@ -31,9 +31,8 @@ public class CategoryController {
         model.addAttribute("mStyle", style);
         model.addAttribute("mMinPrice", minPrice);
         model.addAttribute("mMaxPrice", maxPrice);
-        model.addAttribute("styleList", categoryService.getListOfStylesAndQuantity(category.getId()));
-        model.addAttribute("manufacturerList", categoryService.getListOfManufacturerNamesAndQuantity(category.getId()));
-        model.addAttribute("quantityAllOfCategory", categoryService.getQuantityByIdCategory(category.getId()));
+        model.addAttribute("styleList", categoryService.getListOfStyleNames(category.getId()));
+        model.addAttribute("manufacturerList", categoryService.getListOfManufacturerNames(category.getId()));
 
         PagedListHolder<?> pageListProduct = new PagedListHolder<>(categoryService.getListProduct(category.getId(), manufacturer, style, minPrice, maxPrice));
         pageListProduct.setPageSize(6);

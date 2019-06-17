@@ -1,15 +1,25 @@
 ﻿var dialog = document.querySelector('dialog');
 
 function fnRegisterSuccess(res) {
-    if (res.result) {
-        $("#registerForm").html(res.data);
-
         dialog.showModal();
-    }
-    //else {
-    //    $("#registerForm").html(res);
-    //}
 }
+$("#registrationForm").submit(function(e) {
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+
+    var form = $(this);
+
+    $.ajax({
+        type: "POST",
+        url: "/dang-ky",
+        data: form.serialize(), // serializes the form's elements.
+        success: function(data)
+        {
+            alert(data); // show response from the php script.
+        }
+    });
+});
+
 
 function fnLoginSuccess(res) {
     if (res.result == true) {

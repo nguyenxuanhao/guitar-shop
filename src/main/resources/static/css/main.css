@@ -6647,7 +6647,8 @@ label {
         border-radius: 0;
         font-size: 1em;
         background-color: #f5f5f5;
-        margin-bottom: 15px;
+        margin-top: 7px;
+        margin-bottom: 7px;
     }
 
     .login_form .form-group .primary-btn {

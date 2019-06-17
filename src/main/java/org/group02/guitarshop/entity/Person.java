@@ -21,23 +21,24 @@ public class Person {
     private int Person_Id;
 
     @Column(name = "Name", nullable = true, columnDefinition="nvarchar(255)")
-    @NotEmpty(message = "*Vui lòng nhập tên")
+    @NotEmpty(message = "Vui lòng nhập tên")
     private String name;
 
     @Column(name = "Email", nullable = true, length = 255)
-    @Email(message = "*Vui lòng nhập vào địa chỉ email hợp lệ")
-    @NotEmpty(message = "*Vui lòng nhập email")
+    @Email(message = "Vui lòng nhập vào địa chỉ email hợp lệ")
+    @NotEmpty(message = "Vui lòng nhập email")
     private String email;
 
     @Column(name = "Password", nullable = true, length = 255)
-    @Length(min = 5, message = "*Vui lòng nhập mật mã có ít nhất 5 ký tự")
-    @NotEmpty(message = "*Vui lòng nhập mật mã")
+    @Length(min = 5, message = "Vui lòng nhập mật mã có ít nhất 5 ký tự")
+    @NotEmpty(message = "Vui lòng nhập mật mã")
     private String password;
 
     @Column(name = "Address", nullable = true, columnDefinition="nvarchar(1255)")
     private String address;
 
     @Column(name = "Phone", nullable = true, length = 20)
+    @NotEmpty(message = "Vui lòng nhập số điện thoại")
     private String phone;
 
     @Lob

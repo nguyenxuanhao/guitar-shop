@@ -53,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .usernameParameter("email")
                 .passwordParameter("password")
+                .failureUrl("/dang-nhap?error=1")
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/dang-xuat"))
                 .logoutSuccessUrl("/").and().exceptionHandling()

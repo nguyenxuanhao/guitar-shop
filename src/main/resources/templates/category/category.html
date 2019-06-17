@@ -31,11 +31,11 @@
                         <form action="#">
                             <ul>
                                 <li class="filter-list">
-                                    <a th:classappend="${mManufacturer == 'All' ? 'active' : ''}" th:href="@{'~/san-pham/' + ${mMetadata}(manufacturer='All', style=${mStyle}, minPrice=${mMinPrice}, maxPrice=${mMaxPrice})}">Tất cả (<span th:text="${quantityAllOfCategory}"></span>)</a>
+                                    <a th:classappend="${mManufacturer == 'All' ? 'active' : ''}" th:href="@{'~/san-pham/' + ${mMetadata}(manufacturer='All', style=${mStyle}, minPrice=${mMinPrice}, maxPrice=${mMaxPrice})}">Tất cả</a>
                                 </li>
                                 <th:block th:each="item : ${manufacturerList}">
                                     <li class="filter-list">
-                                        <a th:classappend="${mManufacturer == item.key ? 'active' : ''}" th:href="@{'~/san-pham/' + ${mMetadata}(manufacturer=${item.key}, style=${mStyle}, minPrice=${mMinPrice}, maxPrice=${mMaxPrice})}">[[${item.key}]] (<span th:text="${item.value}"></span>)</a>
+                                        <a th:classappend="${mManufacturer == item ? 'active' : ''}" th:href="@{'~/san-pham/' + ${mMetadata}(manufacturer=${item}, style=${mStyle}, minPrice=${mMinPrice}, maxPrice=${mMaxPrice})}">[[${item}]]</a>
                                     </li>
                                 </th:block>
                             </ul>
@@ -46,11 +46,11 @@
                         <form action="#">
                             <ul>
                                 <li class="filter-list">
-                                    <a th:classappend="${mStyle == 'All' ? 'active' : ''}" th:href="@{'~/san-pham/' + ${mMetadata}(manufacturer=${mManufacturer}, style='All', minPrice=${mMinPrice}, maxPrice=${mMaxPrice})}">Tất cả (<span th:text="${quantityAllOfCategory}"></span>)</a>
+                                    <a th:classappend="${mStyle == 'All' ? 'active' : ''}" th:href="@{'~/san-pham/' + ${mMetadata}(manufacturer=${mManufacturer}, style='All', minPrice=${mMinPrice}, maxPrice=${mMaxPrice})}">Tất cả</a>
                                 </li>
                                 <th:block th:each="item : ${styleList}">
                                     <li class="filter-list">
-                                        <a th:classappend="${mStyle == item.key ? 'active' : ''}" th:href="@{'~/san-pham/' + ${mMetadata}(manufacturer=${mManufacturer}, style=${item.key}, minPrice=${mMinPrice}, maxPrice=${mMaxPrice})}">[[${item.key}]] (<span th:text="${item.value}"></span>)</a>
+                                        <a th:classappend="${mStyle == item ? 'active' : ''}" th:href="@{'~/san-pham/' + ${mMetadata}(manufacturer=${mManufacturer}, style=${item}, minPrice=${mMinPrice}, maxPrice=${mMaxPrice})}">[[${item}]] </a>
                                     </li>
                                 </th:block>
                             </ul>

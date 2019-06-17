@@ -26,17 +26,29 @@
     <section class="search_area section_gap">
         <div class="container">
             <div class="result_overview">
-                <!--/*@thymesVar id="count" type=""*/-->
-<!--                <h4 th:text="Kết quả tìm kiếm " + th:text="${count}"+ th:text=" sản phẩm"></h4>-->
+                <th:block th:if="${#lists.isEmpty(pageListProduct.pageList)}">
                 <h4 th:text="'Kết quả tìm được: '+${result.size()}+' sản phẩm'"></h4>
                 <hr />
+                </th:block>
+            </div>
+            <th:block th:unless="${#lists.isEmpty(pageListProduct.pageList)}">
+            <div class="filter-bar d-flex flex-wrap align-items-center justify-content-end">
+                <ul class="pagination">
+                    <th:block th:each="item : ${#numbers.sequence(beginPage, endPage)}">
+                        <li th:class="${item == currentPage ? 'page-item active' : 'page-item'}">
+                            <a class="page-link" th:href="@{~/tim-kiem(tu-khoa=${tukhoa}, page=${item})}">
+                                <span th:text='${item}'></span>
+                            </a>
+                        </li>
+                    </th:block>
+                </ul>
             </div>
             <div class="result_list">
                 <div class="row">
                     <!--/*@thymesVar id="result" type=""*/-->
-                    <th:block th:each="product : ${result}">
+                    <th:block th:each="product : ${pageListProduct.pageList}">
                         <a th:href="@{~/chi-tiet/(name=${product.metadata},id=${product.Id})}">
-                            <div class="col-lg-3 col-md-4 col-6">
+                            <div class="col-lg-4 col-md-6 col-sm-4 col-6">
                                 <div class="single-product">
                                     <img class="img-fluid" th:src="${product.imageThumbnail}" alt="">
                                     <div class="product-details s_product_text">
@@ -63,6 +75,18 @@
                     </th:block>
                 </div>
             </div>
+            <div class="filter-bar d-flex flex-wrap align-items-center justify-content-end">
+                <ul class="pagination">
+                    <th:block th:each="item : ${#numbers.sequence(beginPage, endPage)}">
+                        <li th:class="${item == currentPage ? 'page-item active' : 'page-item'}">
+                            <a class="page-link" th:href="@{~/tim-kiem(tu-khoa=${tukhoa}, page=${item})}">
+                                <span th:text='${item}'></span>
+                            </a>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+            </th:block>
             <!--<div class="filter-bar d-flex flex-wrap align-items-center justify-content-end">
                 @Html.PagedListPager((IPagedList)Model, page => Url.Action("SearchResult", new { searchText = ViewBag.searchText, page }))
             </div>-->
