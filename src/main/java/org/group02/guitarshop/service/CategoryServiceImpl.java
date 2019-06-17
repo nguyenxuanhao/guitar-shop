@@ -61,32 +61,30 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Map<String, Integer> getListOfManufacturerNamesAndQuantity(int idCategory) {
+    public List<String> getListOfManufacturerNames(int idCategory) {
         List<Object[]> list = entityManager.createNativeQuery("SELECT m.Name, COUNT(m.Name) FROM PRODUCT p INNER JOIN MANUFACTURER m ON p.Id_Manufacturer = m.Id WHERE Id_Category = ? GROUP BY m.Name ORDER BY m.Name")
                               .setParameter(1, idCategory)
                               .getResultList();
 
-        Map<String, Integer> ListOfManufacturerNamesAndQuantity = new HashMap<>();
+        List<String> manufacturerList = new ArrayList<>();
 
-        for (Object[] item : list) {
-            ListOfManufacturerNamesAndQuantity.put((String) item[0], ((Number)item[1]).intValue());
-        }
+        for (Object[] item : list)
+            manufacturerList.add((String) item[0]);
 
-        return ListOfManufacturerNamesAndQuantity;
+        return manufacturerList;
     }
 
     @Override
-    public Map<String, Integer> getListOfStylesAndQuantity(int idCategory) {
+    public List<String> getListOfStyleNames(int idCategory) {
         List<Object[]> list = entityManager.createNativeQuery("SELECT Style, COUNT(Style) FROM PRODUCT WHERE Id_Category = ? GROUP BY Style ORDER BY Style")
                               .setParameter(1, idCategory)
                               .getResultList();
 
-        Map<String, Integer> ListOfStylesAndQuantity = new HashMap<>();
+        List<String> styleList = new ArrayList<>();
 
-        for (Object[] item : list) {
-            ListOfStylesAndQuantity.put((String) item[0], ((Number)item[1]).intValue());
-        }
+        for (Object[] item : list)
+            styleList.add((String) item[0]);
 
-        return ListOfStylesAndQuantity;
+        return styleList;
     }
 }

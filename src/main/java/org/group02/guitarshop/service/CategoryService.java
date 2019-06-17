@@ -13,6 +13,6 @@ public interface CategoryService {
     int getQuantityByIdCategory(int id);
     List<Category> getAllCategories();
     List<Product> getListProduct(int id, String manufacturer, String style, int minPrice, int maxPrice);
-    Map<String, Integer> getListOfManufacturerNamesAndQuantity(int id);
-    Map<String, Integer> getListOfStylesAndQuantity(int id);
+    List<String> getListOfManufacturerNames(int id);
+    List<String> getListOfStyleNames(int id);
 }
