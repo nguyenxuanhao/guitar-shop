@@ -1,10 +1,15 @@
 package org.group02.guitarshop.controller;
 
 import org.group02.guitarshop.entity.DiscountCode;
+import org.group02.guitarshop.entity.Invoice;
+import org.group02.guitarshop.entity.InvoiceDetail;
 import org.group02.guitarshop.entity.Product;
 import org.group02.guitarshop.models.CartItemModel;
 import org.group02.guitarshop.service.DiscountCodeService;
+import org.group02.guitarshop.service.InvoiceDetailService;
+import org.group02.guitarshop.service.InvoiceService;
 import org.group02.guitarshop.service.ProductService;
+import org.group02.guitarshop.models.PersonalInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +30,12 @@ public class CartController {
 
     @Autowired
     private DiscountCodeService discountCodeService;
+
+    @Autowired
+    private InvoiceService invoiceService;
+
+    @Autowired
+    private InvoiceDetailService invoiceDetailService;
 
     @RequestMapping(value = "/gio-hang")
     public String viewDetail(Model model) {
@@ -114,7 +127,7 @@ public class CartController {
     public String applyDiscountCode(HttpSession session, @ModelAttribute("discountCode") DiscountCode discountCode){
         removeDiscountCode(session);
 
-        DiscountCode newDiscountCode=discountCodeService.getDiscountCodeByCode(discountCode.getCode());
+        DiscountCode newDiscountCode = discountCodeService.getDiscountCodeByCode(discountCode.getCode());
         if (newDiscountCode != null) {
             session.setAttribute("sessionDiscountCode",newDiscountCode);
         }
@@ -132,6 +145,39 @@ public class CartController {
     public String checkout() {
 
         return "/cart/checkout";
+    }
+
+    @RequestMapping(value = "/thanh-toan", method = RequestMethod.POST)
+    public String checkout(HttpSession session, Model model, @RequestBody Invoice requestInvoice) {
+        HashMap<Integer, CartItemModel> sessionCart = (HashMap<Integer, CartItemModel>) session.getAttribute("sessionCart");
+        PersonalInformation personalInformation = (PersonalInformation) session.getAttribute("PersonalInformation");
+        DiscountCode discountCode = (DiscountCode) session.getAttribute("sessionDiscountCode");
+        Invoice invoice = new Invoice();
+        invoice.setCreatedTime(new Timestamp(new Date().getTime()));
+        invoice.setStatus(0);
+        invoice.setTotal(getTotalPrice(sessionCart));
+        if (discountCode != null)
+            invoice.setIdDiscountCode(discountCode.getId());
+        if (personalInformation != null)
+            invoice.setIdPerson(personalInformation.getId());
+        invoice.setCustomerName(requestInvoice.getCustomerName());
+        invoice.setCustomerEmail(requestInvoice.getCustomerEmail());
+        invoice.setCustomerPhone(requestInvoice.getCustomerPhone());
+        invoice.setCustomerAddress(requestInvoice.getCustomerAddress());
+        invoice.setCustomerMessage(requestInvoice.getCustomerMessage());
+        invoice.setPaymentMethod(requestInvoice.getPaymentMethod());
+
+        Integer invoiceId = invoiceService.insertInvoice(invoice);
+
+        for (Map.Entry<Integer, CartItemModel> entry : sessionCart.entrySet()) {
+            Integer key = entry.getKey();
+            CartItemModel value = new CartItemModel(entry.getValue());
+            InvoiceDetail invoiceDetail = new InvoiceDetail(invoiceId, value.getProduct().getId(), value.getQuantity());
+            invoiceDetail.setInvoiceByIdInvoice(invoiceService.getInvoiceById(invoiceId));
+            invoiceDetail.setProductByIdProduct(productService.getProductById(value.getProduct().getId()));
+            invoiceDetailService.insertInvoiceDetail(invoiceDetail);
+        }
+        return "cart/checkout";
     }
 
     private double getTotalPrice(HashMap<Integer, CartItemModel> sessionCart) {

@@ -10,6 +10,11 @@ public class CartItemModel {
     public CartItemModel() {
     }
 
+    public CartItemModel(CartItemModel cartItemModel) {
+        this.product = cartItemModel.product;
+        this.quantity = cartItemModel.quantity;
+    }
+
     public CartItemModel(Product product, Integer quantity) {
         this.product = product;
         this.quantity = quantity;

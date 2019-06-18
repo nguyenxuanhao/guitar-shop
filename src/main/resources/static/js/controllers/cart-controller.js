@@ -59,6 +59,42 @@ cart.init();
 
 var dialog = document.querySelector('dialog');
 
+$(document).ready(function () {
+    $("#checkoutForm").submit(function (e) {
+        e.preventDefault();
+        ajaxPost();
+    })
+
+    function ajaxPost() {
+        var fromData = {
+            customerName: $("#customerName").val(),
+            customerPhone: $("#customerPhone").val(),
+            customerEmail: $("#customerEmail").val(),
+            customerAddress: $("#customerAddress").val(),
+            customerMessage: $("#customerMessage").val(),
+            paymentMethod: "COD",
+        }
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/thanh-toan",
+            data: JSON.stringify(fromData),
+            success: function (res) {
+                if(res) {
+                    dialog.showModal();
+                }
+            },
+            error: function (e) {
+                alert("Gửi tin nhắn không thành công!")
+            }
+        })
+    }
+
+    $(".closeDialog").on("click", function () {
+        dialog.close();
+    })
+});
+
 function fnCheckoutSuccess(res) {
     if (res.result) {
         //$("#checkoutForm").html(res.data);

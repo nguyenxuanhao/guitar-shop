@@ -22,6 +22,12 @@ public class InvoiceDetail implements Serializable {
         this.quantity = quantity;
     }
 
+    public InvoiceDetail(int idInvoice, int idProduct, Integer quantity) {
+        InvoiceDetailIdentity invoiceDetailIdentity = new InvoiceDetailIdentity(idInvoice, idProduct);
+        this.invoiceDetailIdentity = invoiceDetailIdentity;
+        this.quantity = quantity;
+    }
+
     @MapsId("idInvoice")
     @ManyToOne
     @JoinColumn(name = "Id_Invoice", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)

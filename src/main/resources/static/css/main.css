@@ -7989,3 +7989,7 @@ label {
 .error_area .return_home:hover{
     background-color:#ffba00;
 }
+
+.validation-message {
+    color: #dc3545
+}

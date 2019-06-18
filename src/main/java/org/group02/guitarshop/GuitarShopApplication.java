@@ -13,5 +13,4 @@ public class GuitarShopApplication {
         SpringApplication.run(GuitarShopApplication.class, args);
     }
 
-
 }
