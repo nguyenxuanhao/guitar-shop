@@ -21,7 +21,7 @@ public class SearchController {
                           @RequestParam(value = "tu-khoa") String searchString,
                           @RequestParam(value="page", defaultValue = "1", required = false) int pageNumber) {
         PagedListHolder<?> pageListProduct = new PagedListHolder<>(productService.searchProducts((searchString)));
-        pageListProduct.setPageSize(6);
+        pageListProduct.setPageSize(12);
         final int goToPage = pageNumber - 1;
         if (goToPage <= pageListProduct.getPageCount() && goToPage >= 0) {
             pageListProduct.setPage(goToPage);

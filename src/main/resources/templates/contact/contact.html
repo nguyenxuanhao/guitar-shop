@@ -69,22 +69,26 @@
                                     <div class="form-group">
                                         <label>Họ tên *</label>
                                         <input type="text" class="form-control" id="name" name="name" />
+                                        <label class="validation-message" id="contactNameError"></label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Email *</label>
-                                        <input type="email" class="form-control" id="email" name="email" />
+                                        <input type="email" class="form-control" id="email" name="email"/>
+                                        <label class="validation-message" id="contactEmailError"></label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Tiêu đề</label>
                                 <input type="text" class="form-control" id="title" name="title" />
+                                <label class="validation-message" id="contactTitleError"></label>
                             </div>
                             <div class="form-group">
                                 <label>Lời nhắn *</label>
                                 <textarea type="text" rows="5" class="form-control" id="messageContent" name="messageContent"></textarea>
+                                <label class="validation-message" id="contactContentError"></label>
                             </div>
                             <div class="login_form send_message row justify-content-end">
                                 <div class="form-group col-md-6">

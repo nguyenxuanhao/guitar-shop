@@ -3,6 +3,8 @@ package org.group02.guitarshop.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Data
 @Entity
