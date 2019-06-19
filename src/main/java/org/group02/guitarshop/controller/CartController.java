@@ -90,6 +90,7 @@ public class CartController {
             session.setAttribute("sessionCart", null);
             session.setAttribute("sessionCartNum", null);
             session.setAttribute("sessionCartTotal", null);
+            session.setAttribute("sessionDiscountCode", null);
         } else {
             session.setAttribute("sessionCart", sessionCart);
             session.setAttribute("sessionCartNum", sessionCart.size());
