@@ -62,6 +62,11 @@ var dialog = document.querySelector('dialog');
 $(document).ready(function () {
     $("#checkoutForm").submit(function (e) {
         e.preventDefault();
+
+        if(!(validateName() & validatePhone() & validateAddress())){
+            return false;
+        }
+
         ajaxPost();
     })
 
@@ -85,7 +90,7 @@ $(document).ready(function () {
                 }
             },
             error: function (e) {
-                alert("Gửi tin nhắn không thành công!")
+                alert("Thanh toán không thành công!")
             }
         })
     }
@@ -93,6 +98,40 @@ $(document).ready(function () {
     $(".closeDialog").on("click", function () {
         dialog.close();
     })
+
+    function validateName(){
+        var error = document.getElementById("customerNameError");
+        error.innerHTML="";
+
+        if($("#customerName").val() == ""){
+            error.innerHTML = "Vui lòng nhập tên";
+        }
+
+        return "" === error.innerHTML;
+    }
+
+    function validatePhone(){
+        var error = document.getElementById("customerPhoneError");
+        error.innerHTML="";
+
+        if($("#customerPhone").val() == ""){
+            error.innerHTML = "Vui lòng nhập số điện thoại";
+        }
+
+        return "" === error.innerHTML;
+    }
+
+    function validateAddress(){
+        var error = document.getElementById("customerAddressError");
+        debugger
+        error.innerHTML="";
+
+        if($("#customerAddress").val() == ""){
+            error.innerHTML = "Vui lòng nhập địa chỉ";
+        }
+
+        return "" === error.innerHTML;
+    }
 });
 
 function fnCheckoutSuccess(res) {

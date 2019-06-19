@@ -50,10 +50,6 @@ public class Invoice {
     private Integer status;
 
     @ManyToOne
-    @JoinColumn(name = "Id_Person", referencedColumnName = "Person_Id", insertable = false, updatable = false)
-    private Person personByIdPerson;
-
-    @ManyToOne
     @JoinColumn(name = "Id_Discount_Code", referencedColumnName = "Id", insertable = false, updatable = false)
     private DiscountCode discountCodeByIdDiscountCode;
 

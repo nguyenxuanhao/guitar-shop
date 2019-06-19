@@ -13,6 +13,7 @@ public class PersonalInformation {
     public String phone;
     public String email;
     public String address;
+    public String avatar;
 
     public PersonalInformation() {
         this.id = 0;
@@ -20,18 +21,21 @@ public class PersonalInformation {
         this.phone = "";
         this.email = "";
         this.address = "";
+        this.avatar = "";
     }
-    public PersonalInformation(String name, String phone, String email, String address) {
+    public PersonalInformation(String name, String phone, String email, String address, String avatar) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.avatar = avatar;
     }
-    public PersonalInformation(Integer id, String name, String phone, String email, String address) {
+    public PersonalInformation(Integer id, String name, String phone, String email, String address, String avatar) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.avatar = avatar;
     }
 }

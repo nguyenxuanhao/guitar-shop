@@ -70,17 +70,26 @@
                                 <div class="cart_item_count" th:text="${session.sessionCartNum}==null?'0':${session.sessionCartNum}">0</div>
                             </a>
                         </li>
-                        <li class="nav-item submenu dropdown">
+                        <li class="nav-item submenu dropdown" sec:authorize="isAnonymous()">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true"
                                aria-expanded="false"><span class="fa fa-user"></span></a>
-                            <ul sec:authorize="isAuthenticated()">
-                                <li class="nav-item user_name"><h6 th:text="${PersonalInformation.getName()}"></h6></li>
-                                <li class="nav-item"><a class="nav-link" th:href="@{/dang-xuat}">Đăng xuất</a></li>
-                            </ul>
-                            <ul sec:authorize="isAnonymous()">
+                            <ul>
                                 <li class="nav-item user_name"><a class="nav-link" href="/dang-nhap">Đăng nhập</a></li>
                                 <li class="nav-item"><a class="nav-link" th:href="@{/dang-ky}">Đăng ký</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item submenu dropdown" sec:authorize="isAuthenticated()">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false" th:switch="${PersonalInformation.getAvatar() != ''}">
+                                <img th:case="true" class="rounded-circle avatar"
+                                     th:src="${PersonalInformation.getAvatar()}" />
+                                <img th:case="false" class="rounded-circle avatar"
+                                src="@{/img/default_user.png}" />
+                            </a>
+                            <ul>
+                                <li class="nav-item user_name"><h6 th:text="${PersonalInformation.getName()}"></h6></li>
+                                <li class="nav-item"><a class="nav-link" th:href="@{/dang-xuat}">Đăng xuất</a></li>
                             </ul>
                         </li>
                     </ul>

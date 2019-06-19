@@ -37,7 +37,7 @@ public class HomeController {
             String email = loggedInUser.getName();
             Person person = personRepository.findByEmail(email);
             personalInformation =
-                    new PersonalInformation(person.getPerson_Id(), person.getName(), person.getPhone(), person.getEmail(), person.getAddress());
+                    new PersonalInformation(person.getPerson_Id(), person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getAvatar());
         }
         request.getSession().setAttribute("PersonalInformation", personalInformation);
 

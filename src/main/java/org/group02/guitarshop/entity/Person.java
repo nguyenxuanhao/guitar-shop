@@ -48,9 +48,6 @@ public class Person {
     @Column(name = "Participation_Time", nullable = true)
     private Timestamp participationTime;
 
-    @OneToMany(mappedBy = "personByIdPerson")
-    private Collection<Invoice> invoicesById;
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "PERSON_ROLE", joinColumns = @JoinColumn(name = "Person_Id"), inverseJoinColumns = @JoinColumn(name = "Role_Id"))
     private Set<Role> roles;

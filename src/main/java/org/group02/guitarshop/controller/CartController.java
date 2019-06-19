@@ -39,7 +39,7 @@ public class CartController {
 
     @RequestMapping(value = "/gio-hang")
     public String viewDetail(Model model) {
-        DiscountCode discountCode=new DiscountCode();
+        DiscountCode discountCode = new DiscountCode();
         model.addAttribute("discountCode",discountCode);
 
         return "/cart/cart-detail";
@@ -129,7 +129,7 @@ public class CartController {
 
         DiscountCode newDiscountCode = discountCodeService.getDiscountCodeByCode(discountCode.getCode());
         if (newDiscountCode != null) {
-            session.setAttribute("sessionDiscountCode",newDiscountCode);
+            session.setAttribute("sessionDiscountCode", newDiscountCode);
         }
 
         return "redirect:/gio-hang";
@@ -149,15 +149,19 @@ public class CartController {
 
     @RequestMapping(value = "/thanh-toan", method = RequestMethod.POST)
     public String checkout(HttpSession session, Model model, @RequestBody Invoice requestInvoice) {
+
         HashMap<Integer, CartItemModel> sessionCart = (HashMap<Integer, CartItemModel>) session.getAttribute("sessionCart");
         PersonalInformation personalInformation = (PersonalInformation) session.getAttribute("PersonalInformation");
         DiscountCode discountCode = (DiscountCode) session.getAttribute("sessionDiscountCode");
+
         Invoice invoice = new Invoice();
         invoice.setCreatedTime(new Timestamp(new Date().getTime()));
         invoice.setStatus(0);
-        invoice.setTotal(getTotalPrice(sessionCart));
-        if (discountCode != null)
+
+        if (discountCode != null) {
             invoice.setIdDiscountCode(discountCode.getId());
+            invoice.setTotal(getTotalPrice(sessionCart) * (100 - discountCode.getDiscountAmount()) / 100);
+        }
         if (personalInformation != null)
             invoice.setIdPerson(personalInformation.getId());
         invoice.setCustomerName(requestInvoice.getCustomerName());
@@ -177,6 +181,9 @@ public class CartController {
             invoiceDetail.setProductByIdProduct(productService.getProductById(value.getProduct().getId()));
             invoiceDetailService.insertInvoiceDetail(invoiceDetail);
         }
+        session.setAttribute("sessionCartNum", 0);
+        session.setAttribute("sessionCartTotal", 0);
+        session.setAttribute("sessionCart", null);
         return "cart/checkout";
     }
 
