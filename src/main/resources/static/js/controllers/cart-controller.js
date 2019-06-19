@@ -85,7 +85,7 @@ $(document).ready(function () {
                 }
             },
             error: function (e) {
-                alert("Gửi tin nhắn không thành công!")
+                alert("Đã xảy ra lỗi, đặt hàng không thành công!")
             }
         })
     }
