@@ -185,6 +185,7 @@ public class CartController {
         session.setAttribute("sessionCartNum", 0);
         session.setAttribute("sessionCartTotal", 0);
         session.setAttribute("sessionCart", null);
+        session.setAttribute("sessionDiscountCode", null);
         return "cart/checkout";
     }
 
